@@ -7,8 +7,7 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         // $this->load->model('auth_model');
-        $this->load->library('form_validation');
-    } //akan selalu dirun di semua method
+    }
 
     public function index()
     {
@@ -19,9 +18,9 @@ class Auth extends CI_Controller
             $this->login();
         } else {
             if ($role == 1) {
-                redirect('admin');
+                redirect('manajemen/mitra_list');
             } elseif ($role == 2) {
-                redirect('user');
+                redirect('beranda');
             }
         }
     }
@@ -52,9 +51,9 @@ class Auth extends CI_Controller
         if ($this->form_validation->run()) {
             $email = $this->input->post('email');
             $password = $this->input->post('password');
-            // $user = $this->auth_model->getUserByEmail($email);
 
-            // KENAPA GA BISA PAKE MODEL???
+            // $user = $this->auth_model->getUserByEmail($email);
+            // KENAPA GA BISA PAKE MODEL??? :(
             $query = $this->db->select('user.*, user_position.position, district.district')
                 ->from('user')
                 ->where('email', $email)
@@ -63,10 +62,8 @@ class Auth extends CI_Controller
                 ->get();
             $user = $query->row_array();
 
-
             if ($user) {
                 if (password_verify($password, $user['password'])) {
-                    //Jika berhasil login, maka data yang disimpan dalam session
                     $data = [
                         'email' => $user['email'],
                         'roleId' => $user['role_id'],
@@ -76,12 +73,12 @@ class Auth extends CI_Controller
                         'position' => $user['position'],
                         'gender' => $user['gender']
                     ];
-                    $this->session->set_userdata($data);
+                    $this->session->set_userdata($data); //Jika berhasil login, maka data yang disimpan dalam session
 
                     if ($user['role_id'] == 1) { //admin
-                        redirect('admin');
-                    } elseif ($user['role_id'] == 2) { //member
-                        redirect('user');
+                        redirect('manajemen/mitra_list');
+                    } elseif ($user['role_id'] == 2) { //user
+                        redirect('beranda');
                     }
                 } else {
                     $this->session->set_flashdata('error', 'Password salah!');
@@ -177,5 +174,10 @@ class Auth extends CI_Controller
             $this->session->set_flashdata('message', 'Selamat! Akunmu berhasil dibuat. Silahkan Login.');
             redirect('auth');
         }
+    }
+
+    public function blocked()
+    {
+        echo 'block';
     }
 }
