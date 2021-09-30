@@ -27,16 +27,16 @@
 
     <!-- Page Content -->
     <div class="row mb-4">
+        <!-- Menu Table -->
         <div class="col-lg-3">
             <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newMenuModal">Tambahkan Menu Baru</a>
-
             <div class=" table-responsive">
                 <table class="table table-striped dataTables" width="100%" cellspacing="0">
                     <thead class="thead-dark">
                         <tr>
-                            <th>#</th>
-                            <th>Menu</th>
-                            <th>Aksi</th>
+                            <th class="text-center">#</th>
+                            <th class="text-center">Menu</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,35 +46,31 @@
                             <tr>
                                 <td><?= $i; ?></td>
                                 <td><?= str_replace('_', ' ', $key['menu']); ?></td>
-                                <td>
-                                    <a href="" class="badge badge-success">edit</a>
-                                    <a href="" class="badge badge-danger">hapus</a>
+                                <td class="text-center">
+                                    <a href="" class="badge badge-primary">Edit</a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
                         <?php endforeach; ?>
-
                     </tbody>
                 </table>
             </div>
-
         </div>
-        <!-- End of Menu Table -->
 
+        <!-- Submenu Table -->
         <div class="col-lg-9">
-            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newSubMenuModal">Tambahkan Sub Menu Baru</a>
-
+            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newSubMenuModal">Tambahkan Submenu Baru</a>
             <div class=" table-responsive">
                 <table class="table table-striped dataTables" width="100%" cellspacing="0">
                     <thead class="thead-dark">
                         <tr>
-                            <th>#</th>
-                            <th>Submenu</th>
-                            <th>Menu</th>
-                            <th>Url</th>
-                            <th>Gambar</th>
-                            <th>Aktif</th>
-                            <th>Aksi</th>
+                            <th class="text-center">#</th>
+                            <th class="text-center">Submenu</th>
+                            <th class="text-center">Menu</th>
+                            <th class="text-center">Url</th>
+                            <th class="text-center">Gambar</th>
+                            <th class="text-center">Aktif</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -88,9 +84,8 @@
                                 <td><?= $key['url']; ?></td>
                                 <td><?= $key['icon']; ?></td>
                                 <td><?= $key['is_active']; ?></td>
-                                <td>
-                                    <a href="" class="badge badge-success">edit</a>
-                                    <a href="" class="badge badge-danger">hapus</a>
+                                <td class="text-center">
+                                    <a href="" class="badge badge-primary">Edit</a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -99,7 +94,6 @@
                 </table>
             </div>
         </div>
-        <!-- End of Submenu Table -->
     </div>
 </div>
 <!-- /.container-fluid -->
@@ -119,7 +113,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('admin/addMenu'); ?>" method="post">
+            <form action="<?= base_url('menu/addMenu'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" class="form-control" id="menu" name="menu" placeholder="Nama menu">
@@ -145,7 +139,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('admin/addSubMenu'); ?>" method="post">
+            <form action="<?= base_url('menu/addSubMenu'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" class="form-control" id="sub_menu_name" name="sub_menu_name" placeholder="Nama submenu">
