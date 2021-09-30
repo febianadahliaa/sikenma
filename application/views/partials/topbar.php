@@ -15,7 +15,7 @@
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
 
-                <div class="topbar-divider d-none d-sm-block"></div>
+                <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
 
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
@@ -28,11 +28,11 @@
 
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="<?= base_url('profile'); ?>">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profil Saya
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="<?= base_url('auth/changePassword'); ?>">
                             <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                             Ganti Password
                         </a>
