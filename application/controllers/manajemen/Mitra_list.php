@@ -14,13 +14,11 @@ class Mitra_list extends CI_Controller
         $data['title'] = 'Daftar Mitra';
         $data['subMenuName'] = 'Mitra';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['menu'] = $this->db->get('user_menu')->result_array();
 
-        $query = $this->db->select('user_sub_menu.*, user_menu.menu')
-            ->from('user_sub_menu')
-            ->join('user_menu', 'user_sub_menu.menu_id = user_menu.id', 'Left')
-            ->get();
-        $data['subMenu'] = $query->result_array();
+        $query = $this->db->join('village', 'mitra.village_id = village.id')
+            ->join('district', 'village.district_id = district.id')
+            ->get('mitra');
+        $data['mitraList'] = $query->result_array();
 
         $this->load->view('partials/header', $data);
         $this->load->view('partials/sidebar', $data);
