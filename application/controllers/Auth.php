@@ -52,8 +52,8 @@ class Auth extends CI_Controller
             $email = $this->input->post('email');
             $password = $this->input->post('password');
 
-            // $user = $this->auth_model->getUserByEmail($email);
             // KENAPA GA BISA PAKE MODEL??? :(
+            // $user = $this->auth_model->getUserByEmail($email);
             $query = $this->db->select('user.*, user_position.position, district.district')
                 ->from('user')
                 ->where('email', $email)
@@ -178,6 +178,86 @@ class Auth extends CI_Controller
 
     public function blocked()
     {
-        echo 'block';
+        $data['title'] = 'Akses Tidak Diizinkan';
+        $data['subMenuName'] = '';
+
+        // $data['user'] = $this->auth_model->getUser();
+        $query = $this->db->get_where('user', ['email' => $this->session->userdata('email')]);
+        $data['user'] = $query->row_array();
+
+        $this->load->view('partials/header', $data);
+        //$this->load->view('partials/sidebar', $data);
+        $this->load->view('partials/topbar', $data);
+        $this->load->view('auth/blocked', $data);
+        $this->load->view('partials/footer');
+    }
+
+    public function changePassword()
+    {
+        $data['title'] = 'Ganti Password';
+        $data['subMenuName'] = '';
+
+        // $data['user'] = $this->auth_model->getUser();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $config = [
+            [
+                'field' => 'currentPassword',
+                'label' => 'Password Lama',
+                'rules' => 'trim|required',
+                'errors' => [
+                    'required' => 'Password lama harus diisi!'
+                ],
+            ],
+            [
+                'field' => 'newPassword1',
+                'label' => 'Password Baru',
+                'rules' => 'trim|required|min_length[6]',
+                'errors' => [
+                    'required' => 'Password baru harus diisi!',
+                    'min_length' => 'Panjang minimal 6 karakter!'
+                ],
+            ],
+            [
+                'field' => 'newPassword2',
+                'label' => 'Konfirmasi Password',
+                'rules' => 'trim|required|matches[newPassword1]',
+                'errors' => [
+                    'required' => 'Konfirmasi password harus diisi!',
+                    'matches' => 'Password tidak sama!'
+                ],
+            ],
+        ];
+        $this->form_validation->set_rules($config);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/sidebar', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('auth/change-password');
+            $this->load->view('partials/footer');
+        } else {
+            $current_password = $this->input->post('currentPassword');
+            $new_password = $this->input->post('newPassword1');
+            if (!password_verify($current_password, $data['user']['password'])) {
+                $this->session->set_flashdata('error', 'Password lama tidak sesuai!');
+                redirect('auth/changePassword');
+            } else {
+                if ($new_password == $current_password) {
+                    $this->session->set_flashdata('error', 'Password baru tidak boleh sama dengan password lama!');
+                    redirect('auth/changePassword');
+                } else {
+                    $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+
+                    // $this->auth_model->updatePassword($password_hash);
+                    $this->db->set('password', $password_hash)
+                        ->where('email', $this->session->userdata('email'))
+                        ->update('user');
+
+                    $this->session->set_flashdata('message', 'Password berhasil diubah!');
+                    redirect('auth/changePassword');
+                }
+            }
+        }
     }
 }
