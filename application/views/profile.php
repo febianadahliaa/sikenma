@@ -12,13 +12,13 @@
     <div class="card mb-3" style="max-width: 720px;">
         <div class="row no-gutters">
             <div class="col-md-4" style="margin: 1em;">
-                <img class="rounded mx-auto d-block" src="<?php if ($user['gender'] == 'female') echo base_url('assets/img/undraw_profile_1.svg');
+                <img class="rounded mx-auto d-block" src="<?php if ($this->session->userdata('gender') == 'Perempuan') echo base_url('assets/img/undraw_profile_1.svg');
                                                             else echo base_url('assets/img/undraw_profile_2.svg'); ?>">
             </div>
             <div class="col-md-7">
                 <div class="card-body">
                     <div class="text-center">
-                        <p class="card-title h3"><?= $user['name']; ?></p>
+                        <p class="card-title h3"><?= $user['uname']; ?></p>
                     </div>
                     <p class="card-text h5"><i class="far fa-fw fa-id-badge"></i> <?= $user['nip']; ?></p>
                     <p class="card-text h5"><i class="far fa-fw fa-envelope"></i> <?= $user['email']; ?></p>
@@ -31,7 +31,6 @@
             </div>
         </div>
     </div>
-
 
 </div>
 <!-- /.container-fluid -->
