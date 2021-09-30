@@ -18,7 +18,7 @@ class Beranda extends CI_Controller
         $this->load->view('partials/header', $data);
         $this->load->view('partials/sidebar', $data);
         $this->load->view('partials/topbar', $data);
-        $this->load->view('beranda/index', $data);
+        $this->load->view('dashboard/index', $data);
         $this->load->view('partials/footer');
     }
 }
