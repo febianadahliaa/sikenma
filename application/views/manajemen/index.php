@@ -9,38 +9,38 @@
         </div>
     </div>
 
+
     <!-- Notification -->
     <div class="row">
         <div class="col-lg-6">
-            <?php
-            if ($this->session->flashdata('error') != '') {
-                echo '<div class="alert alert-danger" role="alert">';
-                echo $this->session->flashdata('error');
-                echo '</div>';
-            }
-            ?>
-            <?php
-            if ($this->session->flashdata('message') != '') {
-                echo '<div class="alert alert-success" role="alert">';
-                echo $this->session->flashdata('message');
-                echo '</div>';
-            }
-            ?>
+            <?php if ($this->session->flashdata('error') != '') : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= $this->session->flashdata('error'); ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($this->session->flashdata('message') != '') : ?>
+                <div class="alert alert-success" role="alert">
+                    <?= $this->session->flashdata('message'); ?>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
+
 
     <!-- Page Content -->
     <div class="row">
         <div class="col-lg">
-            <div class="table-responsive">
-                <table class="table table-hover dataTables-list" id="dataPerPeg" width="100%" cellspacing="0">
+            <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#newMitraModal"><i class="fas fa-user-plus mr-2"></i> Tambahkan Data Mitra Baru</a>
+            <div class=" table-responsive">
+                <table class="table table-hover table-sm dataTables" id="dataMitra" width="100%" cellspacing="0">
                     <thead class="thead-dark">
                         <tr>
                             <th class="text-center">#</th>
                             <th class="text-center">Nama</th>
                             <th class="text-center">No. HP</th>
-                            <th class="text-center">Kecamatan</th>
                             <th class="text-center">Desa</th>
+                            <th class="text-center">Kecamatan</th>
                             <th class="text-center">Umur</th>
                             <th class="text-center">Jenis Kelamin</th>
                             <th class="text-center">Status Pernikahan</th>
@@ -49,37 +49,24 @@
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         <?php $i = 1; ?>
                         <?php foreach ($mitraList as $key) : ?>
                             <tr>
                                 <td class="text-center"><?= $i ?></td>
                                 <td><?= $key['name']; ?></td>
-                                <td><?= $key['phone']; ?></td>
-                                <td><?= $key['district']; ?></td>
-                                <td><?= $key['village']; ?></td>
-                                <td><?= $key['date_of_birth']; ?></td>
-                                <td><?= $key['gender']; ?></td>
-                                <td><?= $key['marriage_status']; ?></td>
-                                <td><?= $key['education']; ?></td>
-                                <td><?= $key['job'] ?></td>
+                                <td class="text-center"><?= $key['phone']; ?></td>
+                                <td class="text-center"><?= $key['village']; ?></td>
+                                <td class="text-center"><?= $key['district']; ?></td>
+                                <td class="text-center"><?= date_diff(date_create($key['date_of_birth']), date_create(date("Y-m-d")))->format('%y'); ?></td>
+                                <td class="text-center"><?= $key['gender']; ?></td>
+                                <td class="text-center"><?= $key['marriage_status']; ?></td>
+                                <td class="text-center"><?= $key['education']; ?></td>
+                                <td class="text-center"><?= $key['job'] ?></td>
                                 <td class="text-center">
-                                    <a href="" class="badge badge-primary">Edit</a>
-                                    <a href="" class="badge badge-danger">Hapus</a>
+                                    <a href="" class="badge badge-pill badge-primary">Edit</a>
+                                    <a href="" class="badge badge-pill badge-danger">Hapus</a>
                                 </td>
-
-
-                                <!-- <td class="action text-center" width="250">
-                                    <a href="" class="badge badge-pill badge-primary mr-1 open-edit-dialog" data-id="<?= $nilai->perjadin_id ?>" data-toggle="modal" data-target="#editModal">Edit</a>
-                                    <a href="<?= base_url('perjadin_pegawai/list_perjadin/delete/' . $nilai->perjadin_id) ?>" class="badge badge-pill badge-danger delete" data-toggle="modal" data-target="#deleteModal">Hapus</a>
-                                </td>
-
-                                <td class="action text-center" width="250">
-                                    <a class="btn btn-sm open-edit-dialog" data-id="<?= $nilai->perjadin_id ?>" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i> Edit</a>
-                                    <a href="<?= base_url('perjadin_pegawai/list_perjadin/delete/' . $nilai->perjadin_id) ?>" class="btn btn-sm text-danger delete" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash"></i> Hapus</a>
-                                </td> -->
-
                             </tr>
                             <?php $i++; ?>
                         <?php endforeach; ?>
@@ -96,3 +83,90 @@
 
 </div>
 <!-- End of Main Content -->
+
+
+
+<!-- New Mitra Data Modal -->
+<div class="modal fade" id="newMitraModal" tabindex="-1" role="dialog" aria-labelledby="newMitraModalLabel" data-backdrop="static" data-keyboard="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title h5 text-light" id="newMitraModalLabel">Tambah Data Mitra</h5>
+                <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                </button>
+            </div>
+            <form action="<?= base_url('manajemen/mitra_list/addMitra'); ?>" method="post">
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
+                            <label class="mt-2" for="name">Nama Mitra</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Tuliskan nama lengkap mitra" required />
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="mt-2" for="village_id">Desa Asal</label>
+                            <select name="village_id" id="village_id" class="form-control">
+                                <option value="">--pilih desa asal mitra--</option>
+                                <?php foreach ($village as $key) : ?>
+                                    <option value="<?= $key['id']; ?>"><?= str_replace('_', ' ', $key['village']); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
+                            <label class="mt-2" for="birthdate">Tanggal Lahir</label>
+                            <input type="date" class="form-control" id="birthdate" name="birthdate" required />
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="mt-2" for="gender">Jenis Kelamin</label>
+                            <select name="gender" id="gender" class="form-control">
+                                <option value="">--pilih jenis kelamin--</option>
+                                <option value="Perempuan">Perempuan</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
+                            <label class="mt-2" for="phone">Nomor HP</label>
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="" required />
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="mt-2" for="marriage">Status Pernikahan</label>
+                            <select name="marriage" id="marriage" class="form-control">
+                                <option value="">--pilih status pernikahan--</option>
+                                <option value="Belum Menikah">Belum Menikah</option>
+                                <option value="Sudah Menikah">Sudah Menikah</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
+                            <label class="mt-2" for="marriage">Pendidikan Terakhir yang Ditamatkan</label>
+                            <select name="education" id="education" class="form-control">
+                                <option value="">--pilih pendidikan terakhir--</option>
+                                <option value="SD/MI">SD/MI</option>
+                                <option value="SMP/MTs">SMP/MTs</option>
+                                <option value="SMA/MA/SMK">SMA/MA/SMK</option>
+                                <option value="DI">DI</option>
+                                <option value="DII">DII</option>
+                                <option value="DIII">DIII</option>
+                                <option value="DIV">DIV</option>
+                                <option value="S1">S1</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="mt-2" for="job">Pekerjaan</label>
+                            <input type="text" class="form-control" id="job" name="job" placeholder="" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
