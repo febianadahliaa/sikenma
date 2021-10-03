@@ -32,8 +32,9 @@
     <!-- Page Content -->
     <div class="row">
         <div class="col-lg-8">
-            <div class="table-responsive">
-                <table class="table table-hover dataTables-list" id="dataPerPeg" width="100%" cellspacing="0">
+            <div class=" table-responsive">
+                <table class="table table-hover table-sm dataTables" width="100%" cellspacing="0">
+
                     <thead class="thead-dark">
                         <tr>
                             <th class="text-center">#</th>

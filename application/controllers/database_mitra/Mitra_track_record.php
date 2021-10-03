@@ -11,7 +11,7 @@ class Mitra_track_record extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Track Record Mitra';
+        $data['title'] = 'Summary Track Record Mitra';
         $data['subMenuName'] = 'Track Record';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
