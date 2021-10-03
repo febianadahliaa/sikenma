@@ -29,9 +29,9 @@
     <div class="row mb-4">
         <!-- Menu Table -->
         <div class="col-lg-3">
-            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newMenuModal">Tambahkan Menu Baru</a>
-            <div class=" table-responsive">
-                <table class="table table-striped dataTables" width="100%" cellspacing="0">
+            <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#newMenuModal"><i class="fas fa-user-plus mr-2"></i> Tambahkan Menu Baru</a>
+            <div class="table-responsive">
+                <table class="table table-hover table-sm dataTables" width="100%" cellspacing="0">
                     <thead class="thead-dark">
                         <tr>
                             <th class="text-center">#</th>
@@ -40,14 +40,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!--id="dataPerSaya"-->
                         <?php $i = 1; ?>
                         <?php foreach ($menu as $key) : ?>
-                            <tr>
+                            <tr id="<?= $key['id']; ?>">
                                 <td><?= $i; ?></td>
                                 <td><?= str_replace('_', ' ', $key['menu']); ?></td>
                                 <td class="text-center">
-                                    <a href="" class="badge badge-primary">Edit</a>
+                                    <a href="" class="badge badge-pill badge-primary mr-1 openEditDialog" data-id="<?= $key['id']; ?>" data-toggle="modal" data-target="#editMenuModal">Edit</a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -59,9 +58,9 @@
 
         <!-- Submenu Table -->
         <div class="col-lg-9">
-            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newSubMenuModal">Tambahkan Submenu Baru</a>
+            <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#newSubMenuModal"><i class="fas fa-user-plus mr-2"></i> Tambahkan Submenu Baru</a>
             <div class=" table-responsive">
-                <table class="table table-striped dataTables" width="100%" cellspacing="0">
+                <table class="table table-hover table-sm dataTables" width="100%" cellspacing="0">
                     <thead class="thead-dark">
                         <tr>
                             <th class="text-center">#</th>
@@ -85,7 +84,7 @@
                                 <td><?= $key['icon']; ?></td>
                                 <td><?= $key['is_active']; ?></td>
                                 <td class="text-center">
-                                    <a href="" class="badge badge-primary">Edit</a>
+                                    <a href="" class="badge badge-pill badge-primary">Edit</a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -113,10 +112,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('menu/addMenu'); ?>" method="post">
+            <form action="<?= base_url('manajemen/menu/addMenu'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" class="form-control" id="menu" name="menu" placeholder="Nama menu">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active" checked>
+                            <label class="form-check-label" for="is_active">Apakah menu akan diaktifkan?</label>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -139,7 +144,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('menu/addSubMenu'); ?>" method="post">
+            <form action="<?= base_url('manajemen/menu/addSubMenu'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" class="form-control" id="sub_menu_name" name="sub_menu_name" placeholder="Nama submenu">
@@ -168,6 +173,33 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Edit Menu modal -->
+<div class="modal fade" id="editMenuModal" tabindex="-1" role="dialog" aria-labelledby="editMenuModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title h5 text-light" id="editMenuModalLabel">Edit Menu</h5>
+                <button class="close text-light" type="button" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <form action="<?= base_url('manajemen/menu/editMenu'); ?>" method="post">
+                <div class=" modal-body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="mt-2" for="menu">Nama Menu</label>
+                            <input class="form-control" type="text" id="menu" name="menu" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Ubah</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batalkan</button>
                 </div>
             </form>
         </div>

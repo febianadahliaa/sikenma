@@ -33,13 +33,58 @@ class Menu extends CI_Controller
     {
         $this->form_validation->set_rules('menu', 'Menu', 'required');
         if ($this->form_validation->run()) {
-            $this->db->insert('user_menu', ['menu' => $this->input->post('menu')]);
+            $data = [
+                'menu' => $this->input->post('menu'),
+                'is_active' => $this->input->post('is_active')
+            ];
+            $this->db->insert($data);
 
             $this->session->set_flashdata('message', 'Menu baru berhasil ditambahkan!');
         } else {
             $this->session->set_flashdata('error', 'Isian menu harus diisi!');
         }
         redirect('manajemen/menu');
+    }
+
+    public function editMenu()
+    {
+        $a = $this->input->post('id');
+        echo $a;
+        // echo $_POST['id'];
+    }
+    public function editMenuu()
+    {
+        $config = [
+            [
+                'field' => 'menu',
+                'label' => 'Menu',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama menu tidak boleh kosong!'
+                ],
+            ],
+        ];
+        $this->form_validation->set_rules($config);
+
+        $menu_id = $this->input->post('id');
+        $menu = $this->input->post('menu');
+
+        $data = array(
+            'menu' => $menu
+        );
+
+        if ($this->form_validation->run()) {
+            $this->db->where('id', $menu_id);
+            $this->db->update('user_menu', $data);
+
+            // $this->db->update('user_menu', $data, ['id' => $menu_id]);
+
+            $this->session->set_flashdata('message', 'Data berhasil disimpan.');
+            redirect(site_url('manajemen/menu'));
+        } else {
+            $this->session->set_flashdata('error', 'Data gagal disimpan.');
+            redirect(site_url('manajemen/menu'));
+        }
     }
 
     public function addSubMenu()
