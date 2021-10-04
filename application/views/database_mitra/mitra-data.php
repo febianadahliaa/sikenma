@@ -12,7 +12,7 @@
 
     <!-- Notification -->
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg">
             <?php if ($this->session->flashdata('error') != '') : ?>
                 <div class="alert alert-danger" role="alert">
                     <?= $this->session->flashdata('error'); ?>
@@ -31,14 +31,13 @@
     <!-- Page Content -->
     <div class="row">
         <div class="col">
-            <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#newMitraRecordModal"><i class="fas fa-user-plus mr-2"></i> Tambahkan Data Track Record Mitra</a>
+            <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#newMitraRecordModal"><i class="fas fa-user-plus mr-2"></i> Tambah Data Track Record Mitra</a>
             <div class=" table-responsive">
                 <table class="table table-hover table-sm dataTables" id="dataMitraRecord" width="100%" cellspacing="0">
                     <thead class="thead-dark">
                         <tr>
                             <th class="text-center">#</th>
                             <th class="text-center">Nama</th>
-                            <th class="text-center">Wilayah</th>
                             <th class="text-center">Kegiatan</th>
                             <th class="text-center">GEO</th>
                             <th class="text-center">IT</th>
@@ -46,7 +45,7 @@
                             <th class="text-center">Quality</th>
                             <th class="text-center">ABC</th>
                             <th class="text-center">Time</th>
-                            <th class="text-center">Penanggung Jawab</th>
+                            <th class="text-center">Penilai</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -57,7 +56,6 @@
                             <tr>
                                 <td class="text-center"><?= $i ?></td>
                                 <td><?= $key['name']; ?></td>
-                                <td><?= $key['district']; ?></td>
                                 <td><?= $key['activity'] . ' ' . $key['year']; ?></td>
                                 <td class="text-center"><?= $key['skor_geo']; ?></td>
                                 <td class="text-center"><?= $key['skor_it']; ?></td>
@@ -94,7 +92,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title h5 text-light" id="newMitraRecordModalLabel">Tambah Data Track Record Mitra</h5>
+                <h5 class="modal-title h5 text-light" id="newMitraRecordModalLabel">Menambahkan Data Track Record Mitra</h5>
                 <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fas fa-times"></i></span>
                 </button>
@@ -129,30 +127,30 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-lg">Penilaian</div>
+                        <div class="form-group col-lg">Penilaian (skala 1-100)</div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" id="skor_geo" name="skor_geo" placeholder="Nilai penguasaan wilayah (1-100)" required />
+                            <input type="text" class="form-control" id="skor_geo" name="skor_geo" placeholder="Nilai penguasaan wilayah" required />
                         </div>
                         <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" id="skor_it" name="skor_it" placeholder="Nilai pemahaman teknologi (1-100)" required />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" id="skor_probing" name="skor_probing" placeholder="Nilai kemampuan probing (1-100)" required />
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" id="skor_quality" name="skor_quality" placeholder="Nilai kualitas isian (1-100)" required />
+                            <input type="text" class="form-control" id="skor_it" name="skor_it" placeholder="Nilai pemahaman teknologi" required />
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" id="skor_abc" name="skor_abc" placeholder="Nilai kerapihan tulisan (1-100)" required />
+                            <input type="text" class="form-control" id="skor_probing" name="skor_probing" placeholder="Nilai kemampuan probing" required />
                         </div>
                         <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" id="skor_time" name="skor_time" placeholder="Nilai ketepatan waktu (1-100)" required />
+                            <input type="text" class="form-control" id="skor_quality" name="skor_quality" placeholder="Nilai kualitas isian" required />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
+                            <input type="text" class="form-control" id="skor_abc" name="skor_abc" placeholder="Nilai kerapihan tulisan" required />
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <input type="text" class="form-control" id="skor_time" name="skor_time" placeholder="Nilai ketepatan waktu" required />
                         </div>
                     </div>
                     <div class="form-group">
