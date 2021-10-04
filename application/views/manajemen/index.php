@@ -31,7 +31,7 @@
     <!-- Page Content -->
     <div class="row">
         <div class="col-lg">
-            <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#newMitraModal"><i class="fas fa-user-plus mr-2"></i> Tambahkan Data Mitra Baru</a>
+            <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#newMitraModal"><i class="fas fa-user-plus mr-2"></i> Tambah Data Mitra Baru</a>
             <div class=" table-responsive">
                 <table class="table table-hover table-sm dataTables" id="dataMitra" width="100%" cellspacing="0">
                     <thead class="thead-dark">
@@ -91,7 +91,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title h5 text-light" id="newMitraModalLabel">Tambah Data Mitra</h5>
+                <h5 class="modal-title h5 text-light" id="newMitraModalLabel">Menambahkan Data Mitra Baru</h5>
                 <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fas fa-times"></i></span>
                 </button>

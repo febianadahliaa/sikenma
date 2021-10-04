@@ -53,7 +53,7 @@ class Mitra_list extends CI_Controller
             $this->db->insert('mitra', $data);
             $this->session->set_flashdata('message', 'Data berhasil ditambahkan.');
         } else {
-            $this->session->set_flashdata('error', 'Data mitra harus diisi dengan lengkap!');
+            $this->session->set_flashdata('error', 'Data mitra harus diisi dengan lengkap dan benar!');
         }
         redirect('manajemen/mitra_list');
     }
