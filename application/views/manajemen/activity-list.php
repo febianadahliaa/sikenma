@@ -31,7 +31,7 @@
     <!-- Page Content -->
     <div class="row">
         <div class="col-lg-6">
-            <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#newActivityModal"><i class="fas fa-user-plus mr-2"></i> Tambahkan Kegiatan Baru</a>
+            <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#newActivityModal"><i class="fas fa-user-plus mr-2"></i> Tambah Data Kegiatan Baru</a>
             <div class=" table-responsive">
                 <table class="table table-hover table-sm dataTables" id="dataActivityList" width="100%" cellspacing="0">
                     <thead class="thead-dark">
@@ -77,7 +77,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title h5 text-light" id="newActivityModalLabel">Tambah Kegiatan Statistik Baru</h5>
+                <h5 class="modal-title h5 text-light" id="newActivityModalLabel">Menambahkan Data Kegiatan Statistik Baru</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fas fa-times"></i></span>
                 </button>
