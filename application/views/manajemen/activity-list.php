@@ -31,7 +31,7 @@
     <!-- Page Content -->
     <div class="row">
         <div class="col-lg-6">
-            <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#newActivityModal"><i class="fas fa-user-plus mr-2"></i> Tambah Data Kegiatan Baru</a>
+            <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#newActivityModal"><i class="fas fa-folder-plus mr-2"></i> Tambah Data Kegiatan Baru</a>
             <div class=" table-responsive">
                 <table class="table table-hover table-sm dataTables" id="dataActivityList" width="100%" cellspacing="0">
                     <thead class="thead-dark">
@@ -46,11 +46,11 @@
                         <?php $i = 1; ?>
                         <?php foreach ($activityList as $key) : ?>
                             <tr id="<?= $key['id']; ?>">
-                                <td class="text-center"><?= $i; ?></td>
+                                <td class="number text-center"><?= $i; ?></td>
                                 <td><?= $key['activity']; ?></td>
-                                <td class="text-center">
+                                <td class="action text-center">
                                     <a href="" class="badge badge-pill badge-primary mr-1 openEditDialog" data-id="<?= $key['id']; ?>" data-toggle="modal" data-target="#editActivityModal">Edit</a>
-                                    <a href="<?= base_url('manajemen/activity_list/deleteActivity/' . $key['id']); ?>" class="badge badge-pill badge-danger deleteActivity" data-toggle="modal" data-target="#deleteModal">Hapus</a>
+                                    <a href="<?= base_url('manajemen/activity_list/deleteActivity/' . $key['id']); ?>" class="badge badge-pill badge-danger deleteActivity" data-toggle="modal" data-target="#deleteActivityModal">Hapus</a>
                                     <!-- onclick="return confirm('yakin?');" -->
                                 </td>
                             </tr>
@@ -101,7 +101,7 @@
 
 <!-- Edit Activity modal -->
 <div class="modal fade" id="editActivityModal" tabindex="-1" role="dialog" aria-labelledby="editActivityModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
                 <h5 class="modal-title h5 text-light" id="editActivityModalLabel">Edit Kegiatan Statistik</h5>
@@ -117,8 +117,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Ubah</button>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batalkan</button>
+                    <button class="btn btn-primary" type="submit">Ubah</button>
                 </div>
             </form>
         </div>
@@ -126,7 +126,40 @@
 </div>
 
 
-<!-- Delete Activity Data with Sweet Alert -->
+<!-- Delete Activity Modal-->
+<div class="modal fade" id="deleteActivityModal" tabindex="-1" role="dialog" aria-labelledby="deleteActivityModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h5 class="modal-title h5 text-light" id="deleteActivityModalLabel">Apakah yakin ingin menghapus data?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Pilih "Hapus" jika ingin menghapus data.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                <a class="btn btn-danger" href="<?= base_url('manajemen/activity_list/deleteActivity/' . $key['id']); ?>">Hapus</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Edit -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        var activity_id = $(this).data('id');
+
+        if (activity_id) {
+
+        }
+    })
+</script>
+
+
+<!-- Delete Activity Data with Sweet Alert (BELOM JADIII)-->
 <script type="text/javascript">
     $(".deleteActivity").click(function() {
         var id = $(this).parents("tr").attr("id");

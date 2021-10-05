@@ -33,7 +33,7 @@ class Activity_list extends CI_Controller
                 'label' => 'Activity',
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Kegiatan tidak boleh kosong!' //ini udah engga perlu, karena di tag input modalnya udah dikasi 'required'
+                    'required' => 'Kegiatan tidak boleh kosong!'
                 ],
             ],
         ];
@@ -69,6 +69,7 @@ class Activity_list extends CI_Controller
 
     public function deleteActivity($id)
     {
+        if (!isset($id)) show_404();
         if ($this->db->delete('activity', ['id' => $id])) {
             redirect('manajemen/activity_list');
         }
