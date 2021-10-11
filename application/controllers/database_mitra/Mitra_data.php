@@ -18,9 +18,9 @@ class Mitra_data extends CI_Controller
         $data['activity'] = $this->db->get('activity')->result_array();
         $data['reviewer'] = $this->db->get('user')->result_array();
 
-        $query = $this->db->join('mitra', 'mitra_track_record.mitra_id = mitra.id')
-            ->join('village', 'mitra.village_id = village.id')
-            ->join('activity', 'mitra_track_record.activity_id = activity.id')
+        $query = $this->db->join('mitra', 'mitra_track_record.mitra_id = mitra.mitra_id')
+            ->join('village', 'mitra.village_id = village.village_id')
+            ->join('activity', 'mitra_track_record.activity_id = activity.activity_id')
             ->join('user', 'mitra_track_record.user_id = user.nip')
             ->get('mitra_track_record');
         $data['mitraRecord'] = $query->result_array();
@@ -37,15 +37,17 @@ class Mitra_data extends CI_Controller
         $this->form_validation->set_rules('mitra_id', 'Name', 'required');
         $this->form_validation->set_rules('activity_id', 'Activity', 'required');
         $this->form_validation->set_rules('year', 'Year', 'required|trim|min_length[4]|max_length[4]|numeric');
-        $this->form_validation->set_rules('skor_geo', 'GEO', 'required|trim|min_length[1]|max_length[3]|numeric');
-        $this->form_validation->set_rules('skor_it', 'IT', 'required|trim|min_length[1]|max_length[3]|numeric');
-        $this->form_validation->set_rules('skor_probing', 'PROB', 'required|trim|min_length[1]|max_length[3]|numeric');
-        $this->form_validation->set_rules('skor_quality', 'QTY', 'required|trim|min_length[1]|max_length[3]|numeric');
-        $this->form_validation->set_rules('skor_abc', 'ABC', 'required|trim|min_length[1]|max_length[3]|numeric');
-        $this->form_validation->set_rules('skor_time', 'Time', 'required|trim|min_length[1]|max_length[3]|numeric');
+        $this->form_validation->set_rules('skor_geo', 'GEO', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('skor_it', 'IT', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('skor_probing', 'PROB', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('skor_quality', 'QTY', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('skor_abc', 'ABC', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('skor_time', 'Time', 'required|trim|min_length[2]|max_length[2]|numeric');
         $this->form_validation->set_rules('user_id', 'Reviewer', 'required');
 
-        if ($this->form_validation->run()) {
+        if ($this->form_validation->run() == False) {
+            $this->session->set_flashdata('error', 'Data track record mitra harus diisi dengan lengkap dan benar!');
+        } else {
             $data = [
                 'mitra_id' => $this->input->post('mitra_id'),
                 'activity_id' => $this->input->post('activity_id'),
@@ -59,9 +61,51 @@ class Mitra_data extends CI_Controller
                 'user_id' => $this->input->post('user_id'),
             ];
             $this->db->insert('mitra_track_record', $data);
-            $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
+            $this->session->set_flashdata('message', 'Data berhasil ditambahkan.');
+        }
+        redirect('database_mitra/mitra_data');
+    }
+
+    public function editRecord()
+    {
+        $this->form_validation->set_rules('mitra_id', 'Name', 'required');
+        $this->form_validation->set_rules('activity_id', 'Activity', 'required');
+        $this->form_validation->set_rules('year', 'Year', 'required|trim|min_length[4]|max_length[4]|numeric');
+        $this->form_validation->set_rules('skor_geo', 'GEO', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('skor_it', 'IT', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('skor_probing', 'PROB', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('skor_quality', 'QTY', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('skor_abc', 'ABC', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('skor_time', 'Time', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('user_id', 'Reviewer', 'required');
+
+        if ($this->form_validation->run() == False) {
+            $this->session->set_flashdata('error', 'Data track record mitra harus diisi dengan lengkap dan benar!');
         } else {
-            $this->session->set_flashdata('error', 'Isian data track record mitra harus diisi dengan lengkap dan benar!');
+            $data = [
+                'mitra_id' => $this->input->post('mitra_id'),
+                'activity_id' => $this->input->post('activity_id'),
+                'year' => $this->input->post('year'),
+                'skor_geo' => $this->input->post('skor_geo'),
+                'skor_it' => $this->input->post('skor_it'),
+                'skor_prob' => $this->input->post('skor_probing'),
+                'skor_qty' => $this->input->post('skor_quality'),
+                'skor_abc' => $this->input->post('skor_abc'),
+                'skor_time' => $this->input->post('skor_time'),
+                'user_id' => $this->input->post('user_id'),
+            ];
+            $record_id = $this->input->post('track_record_id');
+            $this->db->update('mitra_track_record', $data, ['track_record_id' => $record_id]);
+            $this->session->set_flashdata('message', 'Data berhasil diedit.');
+        }
+        redirect('database_mitra/mitra_data');
+    }
+
+    public function deleteRecord($id)
+    {
+        if (!isset($id)) show_404();
+        if ($this->db->delete('mitra_track_record', ['track_record_id' => $id])) {
+            $this->session->set_flashdata('message', 'Data berhasil dihapus.');
         }
         redirect('database_mitra/mitra_data');
     }
