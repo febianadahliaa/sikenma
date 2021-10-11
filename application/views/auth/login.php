@@ -13,27 +13,27 @@
                         <div class="col-lg">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">SIKENMA</h1>
+                                    <h1 class="h3 text-gray-900 mb-2">SIKENMA</h1>
+                                    <h1 class="h5 mb-4">BPS Kabupaten Wakatobi</h1>
                                 </div>
 
-                                <?php
-                                if ($this->session->flashdata('error') != '') {
-                                    echo '<div class="alert alert-danger" role="alert">';
-                                    echo $this->session->flashdata('error');
-                                    echo '</div>';
-                                }
-                                ?>
-                                <?php
-                                if ($this->session->flashdata('message') != '') {
-                                    echo '<div class="alert alert-success" role="alert">';
-                                    echo $this->session->flashdata('message');
-                                    echo '</div>';
-                                }
-                                ?>
+                                <!-- NOTIFICATIONS -->
+                                <?php if ($this->session->flashdata('error') != '') : ?>
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <?= $this->session->flashdata('error'); ?>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($this->session->flashdata('message') != '') : ?>
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <?= $this->session->flashdata('message'); ?>
+                                    </div>
+                                <?php endif; ?>
 
-                                <form class="user" method="post" action="<?= base_url(); ?>auth">
+                                <form class="user" method="post" action="<?= base_url('auth'); ?>">
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Masukkan email (nama@bps.go.id" value="<?= set_value('email'); ?>">
+                                        <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Masukkan email (nama@bps.go.id)" value="<?= set_value('email'); ?>">
                                         <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
@@ -50,9 +50,8 @@
                                     <a class="small" href="forgot-password.html">Forgot Password?</a>
                                 </div> -->
                                 <div class="text-center">
-                                    <a class="small" href="<?= base_url(); ?>auth/register">
+                                    <a class="small" href="<?= base_url('auth/register'); ?>">
                                         Buat Akun!
-                                        <!-- Create an Account! -->
                                     </a>
                                 </div>
                             </div>

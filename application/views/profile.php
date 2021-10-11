@@ -1,14 +1,14 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-    <!-- Page heading -->
+    <!-- PAGE HEADING -->
     <div class="row">
         <div class="col-lg-6">
             <h3 class="mb-4 text-gray-800"><strong><?= $title ?></strong></h3>
         </div>
     </div>
 
-    <!-- Page Content -->
+    <!-- PAGE CONTENT -->
     <div class="card mb-3" style="max-width: 720px;">
         <div class="row no-gutters">
             <div class="col-md-4" style="margin: 1em;">

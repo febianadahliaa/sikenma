@@ -10,10 +10,9 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">
                                 Buat Akun SIKENMA!
-                                <!-- Create an Account! -->
                             </h1>
                         </div>
-                        <form class="user" method="post" action="<?= base_url(); ?>auth/register">
+                        <form class="user" method="post" action="<?= base_url('auth/register'); ?>">
                             <!-- <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
@@ -41,7 +40,6 @@
                             </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">
                                 Daftarkan Akun
-                                <!-- Register Account -->
                             </button>
                         </form>
                         <hr>
@@ -49,9 +47,8 @@
                             <a class="small" href="forgot-password.html">Forgot Password?</a>
                         </div> -->
                         <div class="text-center">
-                            <a class="small" href="<?= base_url(); ?>auth">
+                            <a class="small" href="<?= base_url('auth'); ?>">
                                 Sudah punya akun? Silahkan ke Halaman Login
-                                <!-- Already have an account? Login! -->
                             </a>
                         </div>
                     </div>
