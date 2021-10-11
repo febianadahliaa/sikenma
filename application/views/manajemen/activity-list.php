@@ -1,7 +1,7 @@
-<!-- Begin Page Content -->
+<!-- BEGIN PAGE CONTENT -->
 <div class="container-fluid">
 
-    <!-- Page heading -->
+    <!-- PAGE HEADING -->
     <div class="row">
         <div class="col-lg-6">
             <h3 class="mb-4 text-gray-800"><strong><?= $title ?></strong></h3>
@@ -9,29 +9,28 @@
         </div>
     </div>
 
-
-    <!-- Notification -->
+    <!-- NOTIFICATION -->
     <div class="row">
         <div class="col-lg-6">
             <?php if ($this->session->flashdata('error') != '') : ?>
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <?= $this->session->flashdata('error'); ?>
                 </div>
             <?php endif; ?>
-
             <?php if ($this->session->flashdata('message') != '') : ?>
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <?= $this->session->flashdata('message'); ?>
                 </div>
             <?php endif; ?>
         </div>
     </div>
 
-
-    <!-- Page Content -->
+    <!-- PAGE CONTENT -->
     <div class="row">
         <div class="col-lg-6">
-            <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#newActivityModal"><i class="fas fa-folder-plus mr-2"></i> Tambah Data Kegiatan Baru</a>
+            <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#addActivityModal"><i class="fas fa-folder-plus mr-2"></i> Tambah Data Kegiatan Baru</a>
             <div class=" table-responsive">
                 <table class="table table-hover table-sm dataTables" id="dataActivityList" width="100%" cellspacing="0">
                     <thead class="thead-dark">
@@ -41,17 +40,15 @@
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         <?php $i = 1; ?>
                         <?php foreach ($activityList as $key) : ?>
-                            <tr id="<?= $key['id']; ?>">
+                            <tr id="<?= $key['activity_id']; ?>">
                                 <td class="number text-center"><?= $i; ?></td>
                                 <td><?= $key['activity']; ?></td>
                                 <td class="action text-center">
-                                    <a href="" class="badge badge-pill badge-primary mr-1 openEditDialog" data-id="<?= $key['id']; ?>" data-toggle="modal" data-target="#editActivityModal">Edit</a>
-                                    <a href="<?= base_url('manajemen/activity_list/deleteActivity/' . $key['id']); ?>" class="badge badge-pill badge-danger deleteActivity" data-toggle="modal" data-target="#deleteActivityModal">Hapus</a>
-                                    <!-- onclick="return confirm('yakin?');" -->
+                                    <!-- <a href="" class="badge badge-pill badge-primary mr-1 openEditDialog" data-id="<?= $key['activity_id']; ?>" data-toggle="modal" data-target="#editActivityModal">Edit</a> -->
+                                    <a href="<?= base_url('manajemen/activity_list/deleteActivity/' . $key['activity_id']); ?>" class="badge badge-pill badge-danger deleteActivity" data-toggle="modal" data-target="#deleteActivityModal<?= $key['activity_id']; ?>">Hapus</a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -72,12 +69,12 @@
 
 
 
-<!-- New Activity Modal -->
-<div class="modal fade" id="newActivityModal" tabindex="-1" role="dialog" aria-labelledby="newActivityModalLabel" data-backdrop="static" data-keyboard="true">
+<!-- ADD ACTIVITY MODAL -->
+<div class="modal fade" id="addActivityModal" tabindex="-1" role="dialog" aria-labelledby="addActivityModalLabel" data-backdrop="static" data-keyboard="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title h5 text-light" id="newActivityModalLabel">Menambahkan Data Kegiatan Statistik Baru</h5>
+                <h5 class="modal-title h5 text-light" id="addActivityModalLabel">Menambahkan Data Kegiatan Statistik Baru</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fas fa-times"></i></span>
                 </button>
@@ -99,7 +96,7 @@
 </div>
 
 
-<!-- Edit Activity modal -->
+<!-- EDIT ACTIVITY MODAL -->
 <div class="modal fade" id="editActivityModal" tabindex="-1" role="dialog" aria-labelledby="editActivityModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -110,10 +107,8 @@
             <form action="<?= base_url('manajemen/activity_list/editActivity'); ?>" method="post">
                 <div class=" modal-body">
                     <div class="form-row">
-                        <!-- <div class="form-group"> -->
                         <label class="mt-2" for="menu">Nama Kegiatan</label>
                         <input class="form-control" type="text" id="menu" name="menu" required />
-                        <!-- </div> -->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -126,24 +121,26 @@
 </div>
 
 
-<!-- Delete Activity Modal-->
-<div class="modal fade" id="deleteActivityModal" tabindex="-1" role="dialog" aria-labelledby="deleteActivityModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-danger">
-                <h5 class="modal-title h5 text-light" id="deleteActivityModalLabel">Apakah yakin ingin menghapus data?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Pilih "Hapus" jika ingin menghapus data.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                <a class="btn btn-danger" href="<?= base_url('manajemen/activity_list/deleteActivity/' . $key['id']); ?>">Hapus</a>
+<!-- DELETE ACTIVITY MODAL-->
+<?php foreach ($activityList as $key) : ?>
+    <div class="modal fade" id="deleteActivityModal<?= $key['activity_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteActivityModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h5 class="modal-title h5 text-light" id="deleteActivityModalLabel">Yakin ingin menghapus data?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Data yang dihapus tidak dapat dikembalikan. Pilih <b>Hapus</b> jika ingin menghapus data kegiatan <b><?= $key['activity']; ?></b>.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                    <a class="btn btn-danger" href="<?= base_url('manajemen/activity_list/deleteActivity/' . $key['activity_id']); ?>">Hapus</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+<?php endforeach; ?>
 
 
 
@@ -157,6 +154,7 @@
         }
     })
 </script>
+
 
 
 <!-- Delete Activity Data with Sweet Alert (BELOM JADIII)-->
@@ -187,7 +185,7 @@
                         $("#" + id).remove();
                         Swal.fire({
                             icon: 'success',
-                            title: 'Data pegawai berhasil dihapus!',
+                            title: 'Data kegiatan statistik berhasil dihapus!',
                             showConfirmButton: false,
                             allowOutsideClick: false,
                             timer: 1500

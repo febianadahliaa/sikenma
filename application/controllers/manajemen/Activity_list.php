@@ -14,9 +14,7 @@ class Activity_list extends CI_Controller
         $data['title'] = 'Kegiatan Statistik';
         $data['subMenuName'] = 'Kegiatan';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $query = $this->db->get('activity');
-        $data['activityList'] = $query->result_array();
+        $data['activityList'] = $this->db->get('activity')->result_array();
 
         $this->load->view('partials/header', $data);
         $this->load->view('partials/sidebar', $data);
@@ -39,39 +37,31 @@ class Activity_list extends CI_Controller
         ];
         $this->form_validation->set_rules($config);
 
-        if ($this->form_validation->run()) {
+        if ($this->form_validation->run() == False) {
+            $this->session->set_flashdata('error', 'Data kegiatan harus diisi dengan lengkap dan benar!');
+        } else {
             $data = [
                 'activity' => $this->input->post('activity')
             ];
             $this->db->insert('activity', $data);
-
             $this->session->set_flashdata('message', 'Kegiatan baru berhasil ditambahkan!');
-        } else {
-            $this->session->set_flashdata('error', 'Isian kegiatan harus diisi!');
         }
         redirect('manajemen/activity_list');
     }
 
     public function editActivity()
     {
-        $data = [
-            'id' => $this->input->post('id')
-        ];
-        $query = $this->db->get_where('activity', $data)->row_array();
-        // $query = $this->db->get_where('activity', ['id' => $this->session->userdata('email')])->row_array();
-        // $a = $this->input->post('id');
-
-        // $q = $this->db->get_where('activity', $data)->row_array();
-        // var_dump($q);
-
-        echo json_encode($query);
+        '';
     }
 
     public function deleteActivity($id)
     {
         if (!isset($id)) show_404();
-        if ($this->db->delete('activity', ['id' => $id])) {
-            redirect('manajemen/activity_list');
+        if ($this->db->delete('activity', ['activity_id' => $id])) {
+            $this->session->set_flashdata('message', 'Data berhasil dihapus.');
+        } else {
+            $this->session->set_flashdata('error', 'Data mitra tidak dapat dihapus. Pastikan untuk menghapus track record mitra tersebut terlebih dahulu.');
         }
+        redirect('manajemen/activity_list');
     }
 }
