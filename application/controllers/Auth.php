@@ -57,8 +57,8 @@ class Auth extends CI_Controller
             $query = $this->db->select('user.*, user_position.position, district.district')
                 ->from('user')
                 ->where('email', $email)
-                ->join('user_position', 'user.position_id = user_position.id', 'Left')
-                ->join('district', 'user.district_id = district.id', 'Left')
+                ->join('user_position', 'user.position_id = user_position.position_id', 'Left')
+                ->join('district', 'user.district_id = district.district_id', 'Left')
                 ->get();
             $user = $query->row_array();
 
@@ -68,7 +68,7 @@ class Auth extends CI_Controller
                         'email' => $user['email'],
                         'roleId' => $user['role_id'],
                         'nip' => $user['nip'],
-                        'loc' => $user['district'],
+                        'location' => $user['district'],
                         'name' => $user['name'],
                         'position' => $user['position'],
                         'gender' => $user['gender']
@@ -101,7 +101,7 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('roleId');
         $this->session->unset_userdata('nip');
-        $this->session->unset_userdata('loc');
+        $this->session->unset_userdata('location');
         $this->session->unset_userdata('name');
         $this->session->unset_userdata('position');
         $this->session->unset_userdata('gender');

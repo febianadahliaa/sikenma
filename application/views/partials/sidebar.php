@@ -15,9 +15,9 @@
     <!-- QUERY MENU (BASED ON USER ROLE) -->
     <?php
     $role_id = $this->session->userdata('roleId');
-    $queryMenu = "SELECT user_menu.id, menu
+    $queryMenu = "SELECT user_menu.menu_id, menu
                         FROM user_menu JOIN user_access_menu
-                        ON user_menu.id = user_access_menu.menu_id
+                        ON user_menu.menu_id = user_access_menu.menu_id
                         WHERE user_access_menu.role_id = $role_id
                         AND user_menu.is_active = 1
                         ORDER BY user_access_menu.menu_id ASC
@@ -33,7 +33,7 @@
 
         <!-- QUERY SUBMENU -->
         <?php
-        $menuId = $m['id'];
+        $menuId = $m['menu_id'];
         $querySubMenu = "SELECT *
                                 FROM user_sub_menu
                                 WHERE menu_id = $menuId

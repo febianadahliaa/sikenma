@@ -18,8 +18,8 @@ class Profile extends CI_Controller
         $query = $this->db->select('user.*, user_position.position, district.district')
             ->from('user')
             ->where('email', $this->session->userdata('email'))
-            ->join('user_position', 'user.position_id = user_position.id', 'Left')
-            ->join('district', 'user.district_id = district.id', 'Left')
+            ->join('user_position', 'user.position_id = user_position.position_id', 'Left')
+            ->join('district', 'user.district_id = district.district_id', 'Left')
             ->get();
         $data['user'] = $query->row_array();
 
