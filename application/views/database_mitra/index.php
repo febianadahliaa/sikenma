@@ -1,7 +1,7 @@
-<!-- Begin Page Content -->
+<!-- BEGIN PAGE CONTENT -->
 <div class="container-fluid">
 
-    <!-- Page heading -->
+    <!-- PAGE HEADING -->
     <div class="row">
         <div class="col-lg-8">
             <h3 class="mb-4 text-gray-800"><strong><?= $title ?></strong></h3>
@@ -9,27 +9,25 @@
         </div>
     </div>
 
-    <!-- Notification -->
+    <!-- NOTIFICATION -->
     <div class="row">
         <div class="col-lg-8">
-            <?php
-            if ($this->session->flashdata('error') != '') {
-                echo '<div class="alert alert-danger" role="alert">';
-                echo $this->session->flashdata('error');
-                echo '</div>';
-            }
-            ?>
-            <?php
-            if ($this->session->flashdata('message') != '') {
-                echo '<div class="alert alert-success" role="alert">';
-                echo $this->session->flashdata('message');
-                echo '</div>';
-            }
-            ?>
+            <?php if ($this->session->flashdata('error') != '') : ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <?= $this->session->flashdata('error'); ?>
+                </div>
+            <?php endif; ?>
+            <?php if ($this->session->flashdata('message') != '') : ?>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <?= $this->session->flashdata('message'); ?>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 
-    <!-- Page Content -->
+    <!-- PAGE CONTENT -->
     <div class="row">
         <div class="col-lg-8">
             <div class=" table-responsive">
@@ -41,24 +39,21 @@
                             <th class="text-center">Nama</th>
                             <th class="text-center">Wilayah</th>
                             <th class="text-center">Overall Rating</th>
-                            <!-- <th class="text-center">Action</th> -->
                         </tr>
                     </thead>
 
                     <tbody>
                         <?php $i = 1; ?>
                         <?php foreach ($mitraRecord as $key) : ?>
-                            <tr>
+                            <tr <?= $key['mitra_id']; ?>>
                                 <td class="text-center"><?= $i ?></td>
                                 <td><?= $key['name']; ?></td>
                                 <td><?= $key['district']; ?></td>
                                 <td class="text-center">
-                                    <?= ($key['skor_geo'] * 0.15 + $key['skor_it'] * 0.1 + $key['skor_prob'] * 0.25 + $key['skor_qty'] * 0.2 + $key['skor_abc'] * 0.1 + $key['skor_time'] * 0.2); ?>
+                                    <?= round(($key['geo'] * 0.15 + $key['it'] * 0.1 + $key['prob'] * 0.25 + $key['qty'] * 0.2 + $key['abc'] * 0.1 + $key['time'] * 0.2), 2, PHP_ROUND_HALF_UP); ?>
+                                    <!-- <?= $mitra_score = ($key['geo'] * 0.15 + $key['it'] * 0.1 + $key['prob'] * 0.25 + $key['qty'] * 0.2 + $key['abc'] * 0.1 + $key['time'] * 0.2); ?>
+                                    <?= number_format((float)$mitra_score, 2, '.', ''); ?> -->
                                 </td>
-                                <!-- <td class="text-center">
-                                    <a href="" class="badge badge-primary">Edit</a>
-                                    <a href="" class="badge badge-danger">Hapus</a>
-                                </td> -->
                             </tr>
                             <?php $i++; ?>
                         <?php endforeach; ?>
