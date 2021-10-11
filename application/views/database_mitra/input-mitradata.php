@@ -14,17 +14,18 @@
     <a href="<?= base_url('database_mitra/mitra_data'); ?>" role="button" class="btn btn-outline-primary btn-sm mt-2 mb-2"><i class="fas fa-arrow-left mr-2"></i>Kembali ke Halaman Data Mitra</a>
 
 
-    <!-- Notification -->
+    <!-- NOTIFICATION -->
     <div class="row">
         <div class="col-lg">
             <?php if ($this->session->flashdata('error') != '') : ?>
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <?= $this->session->flashdata('error'); ?>
                 </div>
             <?php endif; ?>
-
             <?php if ($this->session->flashdata('message') != '') : ?>
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <?= $this->session->flashdata('message'); ?>
                 </div>
             <?php endif; ?>
@@ -32,7 +33,7 @@
     </div>
 
 
-    <!-- Page Content -->
+    <!-- PAGE CONTENT -->
     <div class="row">
         <div class="col-lg">
             <form action="<?= base_url('database_mitra/mitra_data/addRecord'); ?>" method="post" enctype="multipart/form-data">
