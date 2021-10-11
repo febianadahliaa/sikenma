@@ -12,20 +12,18 @@
     <!-- Notification -->
     <div class="row">
         <div class="col-lg-6">
-            <?php
-            if ($this->session->flashdata('error') != '') {
-                echo '<div class="alert alert-danger" role="alert">';
-                echo $this->session->flashdata('error');
-                echo '</div>';
-            }
-            ?>
-            <?php
-            if ($this->session->flashdata('message') != '') {
-                echo '<div class="alert alert-success" role="alert">';
-                echo $this->session->flashdata('message');
-                echo '</div>';
-            }
-            ?>
+            <?php if ($this->session->flashdata('error') != '') : ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <?= $this->session->flashdata('error'); ?>
+                </div>
+            <?php endif; ?>
+            <?php if ($this->session->flashdata('message') != '') : ?>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <?= $this->session->flashdata('message'); ?>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 
