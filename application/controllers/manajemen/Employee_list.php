@@ -96,6 +96,19 @@ class Employee_list extends CI_Controller
         redirect('manajemen/employee_list');
     }
 
+    public function resetPassword($id)
+    {
+        if (!isset($id)) show_404();
+        $password_hash = password_hash('123456', PASSWORD_DEFAULT);
+        $data = [
+            'password' => $password_hash
+        ];
+        if ($this->db->update('user', $data, ['nip' => $id])) {
+            $this->session->set_flashdata('message', 'Password berhasil direset.');
+        }
+        redirect('manajemen/employee_list');
+    }
+
     public function deleteEmployee($id)
     {
         if (!isset($id)) show_404();

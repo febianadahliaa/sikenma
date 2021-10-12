@@ -3,7 +3,7 @@
 
     <!-- PAGE HEADING -->
     <div class="row">
-        <div class="col">
+        <div class="col-lg-8">
             <h3 class="mb-4 text-gray-800"><strong><?= $title ?></strong></h3>
             <hr class="sidebar-divider">
         </div>
@@ -11,7 +11,7 @@
 
     <!-- NOTIFICATION -->
     <div class="row">
-        <div class="col-lg">
+        <div class="col-lg-8">
             <?php if ($this->session->flashdata('error') != '') : ?>
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -29,7 +29,7 @@
 
     <!-- PAGE CONTENT -->
     <div class="row">
-        <div class="col-lg">
+        <div class="col-lg-8">
             <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#addEmployeeModal"><i class="fas fa-user-plus mr-2"></i> Tambahkan Data Pegawai Baru</a>
             <div class=" table-responsive">
                 <table class="table table-hover table-sm dataTables" id="dataEmployee" width="100%" cellspacing="0">
@@ -38,11 +38,11 @@
                             <th class="text-center">#</th>
                             <th class="text-center">NIP</th>
                             <th class="text-center">Nama</th>
-                            <th class="text-center">Wilayah</th>
+                            <!-- <th class="text-center">Wilayah</th>
                             <th class="text-center">Jabatan</th>
                             <th class="text-center">Email</th>
                             <th class="text-center">Nomor HP</th>
-                            <th class="text-center">Jenis Kelamin</th>
+                            <th class="text-center">Jenis Kelamin</th> -->
                             <th class="text-center">Role</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -54,14 +54,16 @@
                                 <td class="number text-center"><?= $i ?></td>
                                 <td class="text-center"><?= $key['nip']; ?></td>
                                 <td><?= $key['uname']; ?></td>
-                                <td class="text-center"><?= $key['district']; ?></td>
+                                <!-- <td class="text-center"><?= $key['district']; ?></td>
                                 <td class="text-center"><?= $key['position']; ?></td>
                                 <td class="text-center"><?= $key['email']; ?></td>
                                 <td class="text-center"><?= $key['phone']; ?></td>
-                                <td class="text-center"><?= $key['gender']; ?></td>
+                                <td class="text-center"><?= $key['gender']; ?></td> -->
                                 <td class="text-center"><?= $key['role']; ?></td>
                                 <td class="action text-center">
+                                    <a href="" class="badge badge-pill badge-primary" data-toggle="modal" data-target="#detailEmployeeModal<?= $key['nip']; ?>">Detail</a>
                                     <a href="" class="badge badge-pill badge-success" data-toggle="modal" data-target="#editEmployeeModal<?= $key['nip']; ?>">Edit</a>
+                                    <a href="<?= base_url('manajemen/employee_list/resetPassword/' . $key['nip']); ?>" class="badge badge-pill badge-warning" data-toggle="modal" data-target="#resetEmployeePasswordModal<?= $key['nip']; ?>">Reset Password</a>
                                     <a href="<?= base_url('manajemen/employee_list/deleteEmployee/' . $key['nip']); ?>" class="badge badge-pill badge-danger deleteEmployee" data-toggle="modal" data-target="#deleteEmployeeModal<?= $key['nip']; ?>">Hapus</a>
                                 </td>
                             </tr>
@@ -163,6 +165,32 @@
         </div>
     </div>
 </div>
+
+
+<!-- DETAIL EMPLOYEE MODAL -->
+<?php foreach ($employeeList as $dtlKey) : ?>
+    <div class="modal fade" id="detailEmployeeModal<?= $dtlKey['nip']; ?>" tabindex="-1" role="dialog" aria-labelledby="detailEmployeeModalLabel" data-backdrop="static" data-keyboard="true">
+        <div class="modal-dialog col-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title h5 text-light" id="detailEmployeeModalLabel">Detail Pegawai <b><?= $dtlKey['uname']; ?></b></h5>
+                    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text h5 mb-3"><i class="far fa-fw fa-id-badge"></i> <?= $dtlKey['nip']; ?></p>
+                    <p class="card-text h5 mb-3"><i class="far fa-fw fa-envelope"></i> <?= $dtlKey['email']; ?></p>
+                    <p class="card-text h5 mb-3"><i class="fas fa-fw fa-phone-square"></i> <?= $dtlKey['phone']; ?></p>
+                    <p class="card-text h5 mb-3"><i class="fas fa-fw fa-rocket"></i> <?= $dtlKey['position']; ?></p>
+                    <p class="card-text h5 mb-3"><i class="fas fa-fw fa-dice-d6"></i> <?= $dtlKey['role']; ?></p>
+                    <p class="card-text h5 mb-3"><i class="fas fa-fw fa-venus-mars"></i> <?= $dtlKey['gender']; ?></p>
+                    <p class="card-text h5 mb-3"><i class="fas fa-fw fa-map-marker-alt"></i> <?= $dtlKey['district']; ?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
 
 
 <!-- EDIT EMPLOYEE MODAL -->
@@ -267,6 +295,30 @@
 <?php endforeach; ?>
 
 
+<!-- RESET EMPLOYEE PASSWORD MODAL -->
+<?php foreach ($employeeList as $rpwKey) : ?>
+    <div class="modal fade" id="resetEmployeePasswordModal<?= $rpwKey['nip']; ?>" tabindex="-1" role="dialog" aria-labelledby="resetEmployeePasswordModalLabel" data-backdrop="static" data-keyboard="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title h5 text-light" id="resetEmployeePasswordModalLabel">Reset Password Pegawai</h5>
+                    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Pilih <b>Reset Password</b> jika ingin mereset password <b><?= $rpwKey['uname']; ?></b>.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                    <a class="btn btn-warning" href="<?= base_url('manajemen/employee_list/resetpassword/' . $rpwKey['nip']); ?>">Reset Password</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+
 <!-- DELETE EMPLOYEE MODAL-->
 <?php foreach ($employeeList as $key) : ?>
     <div class="modal fade" id="deleteEmployeeModal<?= $key['nip']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteEmployeeModalLabel" aria-hidden="true">
@@ -278,7 +330,9 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Data yang dihapus tidak dapat dikembalikan. Pilih <b>Hapus</b> jika ingin menghapus data <b><?= $key['uname']; ?></b>.</div>
+                <div class="modal-body">
+                    Data yang dihapus tidak dapat dikembalikan. Pilih <b>Hapus</b> jika ingin menghapus data <b><?= $key['uname']; ?></b>.
+                </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
                     <a class="btn btn-danger" href="<?= base_url('manajemen/employee_list/deleteEmployee/' . $key['nip']); ?>">Hapus</a>
