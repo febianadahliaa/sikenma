@@ -22,8 +22,8 @@
                     </div>
                     <p class="card-text h5"><i class="far fa-fw fa-id-badge"></i> <?= $user['nip']; ?></p>
                     <p class="card-text h5"><i class="far fa-fw fa-envelope"></i> <?= $user['email']; ?></p>
-                    <p class="card-text h5"><i class="fas fa-fw fa-rocket"></i> <?= $user['position']; ?></p>
                     <p class="card-text h5"><i class="fas fa-fw fa-phone-square"></i> <?= $user['phone']; ?></p>
+                    <p class="card-text h5"><i class="fas fa-fw fa-rocket"></i> <?= $user['position']; ?></p>
                     <p class="card-text h5"><i class="fas fa-fw fa-map-marker-alt"></i> <?= $user['district']; ?></p>
 
                     <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->

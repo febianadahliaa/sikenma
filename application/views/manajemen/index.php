@@ -361,7 +361,7 @@
                 <div class="modal-header bg-danger">
                     <h5 class="modal-title h5 text-light" id="deleteMitraModalLabel">Apakah yakin ingin menghapus data?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
+                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">Data yang dihapus tidak dapat dikembalikan. Pilih <b>Hapus</b> jika ingin menghapus data <b><?= $key['name']; ?></b>.</div>
