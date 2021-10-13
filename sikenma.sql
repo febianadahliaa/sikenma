@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 13, 2021 at 11:12 AM
+-- Generation Time: Oct 14, 2021 at 01:36 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.23
 
@@ -159,7 +159,8 @@ INSERT INTO `user` (`nip`, `uname`, `email`, `password`, `role_id`, `gender`, `p
 (340055507, 'Sudarmini', 'sudarmini@bps.go.id', '$2y$10$ixzT880mhJy94R5AP6dvjujTW3JF0p3HbxQjj29JD8TJ4MBf4nWW6', 2, 'Laki-laki', 1, '7407050', '085236097145', 'default.jpg'),
 (340056867, 'Muhammad Nur Kamal', 'nurkamal@bps.go.id', '$2y$10$.okaKhoejeC/.5u3Y5NaF.uNeSEMDTxhieY99Hhcbkc/yd0gkhzVi', 1, 'Laki-laki', 1, '7407050', '082191918081', 'default.jpg'),
 (340057015, 'Chandra Ciputra Suyadi', 'chandra.suyadi@bps.go.id', '$2y$10$TtTgITL9aVIR61G8DoFSu.BNTVyZhMkdl2fZL42Umino5IBDCqbpG', 2, 'Laki-laki', 1, '7407050', '085216091991', 'default.jpg'),
-(340060098, 'Febiana Dahlia Anjani', 'dahlia.anjani@bps.go.id', '$2y$10$pBLE5R/5.SD1s/P9i2JqTer/NFh9edlcEEEgQ7Z6bYzJ2kVrdqKRW', 1, 'Perempuan', 2, '7407050', '081210766330', 'default.jpg');
+(340060098, 'Febiana Dahlia Anjani', 'dahlia.anjani@bps.go.id', '$2y$10$mxRUwUAKOQqUfMTAT08wbeMqKF1f4fIulsF/Dnf5GZMa.7GjTeLrO', 1, 'Perempuan', 2, '7407021', '081210766330', 'default.jpg'),
+(999888777, 'YUKI ISHIKAWA', 'yuki@bps.go.id', '$2y$10$9E0e8O7zqN7kQtQss1sNWu0WU2Bzhel1eq7MUb6RMyWdR6bJXc2be', 2, 'Laki-laki', 2, '7407021', '081222888999', 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -484,13 +485,13 @@ ALTER TABLE `activity`
 -- AUTO_INCREMENT for table `mitra`
 --
 ALTER TABLE `mitra`
-  MODIFY `mitra_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `mitra_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `mitra_track_record`
 --
 ALTER TABLE `mitra_track_record`
-  MODIFY `track_record_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `track_record_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
