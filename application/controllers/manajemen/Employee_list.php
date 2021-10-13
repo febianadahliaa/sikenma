@@ -42,57 +42,57 @@ class Employee_list extends CI_Controller
         $this->form_validation->set_rules('gender', 'Gender', 'required');
         $this->form_validation->set_rules('role_id', 'Role', 'required');
 
-        if ($this->form_validation->run() == False) {
-            $this->session->set_flashdata('error', 'Data pegawai harus diisi dengan lengkap dan benar!');
-        } else {
-            $data = [
-                'nip' => $this->input->post('nip'),
-                'uname' => htmlspecialchars($this->input->post('name', true)),
-                'email' => htmlspecialchars($this->input->post('email', true)),
-                'password' => password_hash(123456, PASSWORD_DEFAULT),
-                'role_id' => $this->input->post('role_id'),
-                'gender' => $this->input->post('gender'),
-                'position_id' => $this->input->post('position_id'),
-                'district_id' => $this->input->post('district_id'),
-                'phone' => $this->input->post('phone'),
-                'image' => 'default.jpg',
-            ];
-            $this->db->insert('user', $data);
-            $this->session->set_flashdata('message', 'Data berhasil ditambahkan.');
-        }
+        // if ($this->form_validation->run() == False) {
+        //     $this->session->set_flashdata('error', 'Data pegawai harus diisi dengan lengkap dan benar!');
+        // } else {
+        $data = [
+            'nip' => $this->input->post('nip'),
+            'uname' => htmlspecialchars($this->input->post('name', true)),
+            'email' => htmlspecialchars($this->input->post('email', true)),
+            'password' => password_hash(123456, PASSWORD_DEFAULT),
+            'role_id' => $this->input->post('role_id'),
+            'gender' => $this->input->post('gender'),
+            'position_id' => $this->input->post('position_id'),
+            'district_id' => $this->input->post('district_id'),
+            'phone' => $this->input->post('phone'),
+            'image' => 'default.jpg',
+        ];
+        $this->db->insert('user', $data);
+        $this->session->set_flashdata('message', 'Data berhasil ditambahkan.');
+        // }
         redirect('manajemen/employee_list');
     }
 
     public function editEmployee()
     {
         $this->form_validation->set_rules('nip', 'Nip', 'required|min_length[9]|max_length[9]|numeric|is_unique[user.nip]');
-        // $this->form_validation->set_rules('name', 'Name', 'required');
-        // $this->form_validation->set_rules('district_id', 'District', 'required');
-        // $this->form_validation->set_rules('position_id', 'Position', 'required');
-        // $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
-        // $this->form_validation->set_rules('phone', 'Phone', 'required|numeric');
-        // $this->form_validation->set_rules('gender', 'Gender', 'required');
-        // $this->form_validation->set_rules('role_id', 'Role', 'required');
+        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('district_id', 'District', 'required');
+        $this->form_validation->set_rules('position_id', 'Position', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
+        $this->form_validation->set_rules('phone', 'Phone', 'required|numeric');
+        $this->form_validation->set_rules('gender', 'Gender', 'required');
+        $this->form_validation->set_rules('role_id', 'Role', 'required');
 
-        if ($this->form_validation->run() == False) {
-            $this->session->set_flashdata('error', 'Data pegawai harus diisi dengan lengkap dan benar!');
-        } else {
-            $data = [
-                'nip' => $this->input->post('nip'),
-                'uname' => htmlspecialchars($this->input->post('name', true)),
-                'email' => htmlspecialchars($this->input->post('email', true)),
-                'password' => password_hash(123456, PASSWORD_DEFAULT),
-                'role_id' => $this->input->post('role_id'),
-                'gender' => $this->input->post('gender'),
-                'position_id' => $this->input->post('position_id'),
-                'district_id' => $this->input->post('district_id'),
-                'phone' => $this->input->post('phone'),
-                'image' => 'default.jpg',
-            ];
-            $nip = $this->input->post('nip');
-            $this->db->update('user', $data, ['nip' => $nip]);
-            $this->session->set_flashdata('message', 'Data berhasil diedit.');
-        }
+        // if ($this->form_validation->run() == False) {
+        //     $this->session->set_flashdata('error', 'Data pegawai harus diisi dengan lengkap dan benar!');
+        // } else {
+        $data = [
+            'nip' => $this->input->post('nip'),
+            'uname' => htmlspecialchars($this->input->post('name', true)),
+            'email' => htmlspecialchars($this->input->post('email', true)),
+            'password' => password_hash(123456, PASSWORD_DEFAULT),
+            'role_id' => $this->input->post('role_id'),
+            'gender' => $this->input->post('gender'),
+            'position_id' => $this->input->post('position_id'),
+            'district_id' => $this->input->post('district_id'),
+            'phone' => $this->input->post('phone'),
+            'image' => 'default.jpg',
+        ];
+        $nip = $this->input->post('nip');
+        $this->db->update('user', $data, ['nip' => $nip]);
+        $this->session->set_flashdata('message', 'Data berhasil diedit.');
+        // }
         redirect('manajemen/employee_list');
     }
 
