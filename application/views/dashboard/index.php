@@ -22,15 +22,16 @@
             <div class="col">
                 <div class="card ml-2 mr-1 mt-auto mb-2 px-2 py-2">
                     <p class="card-text h7 mx-auto">Wangi-Wangi</p>
-                    <img class="rounded mx-auto d-block" width="225" height="225" src="<?= base_url('assets/img/maps/wa.svg'); ?>">
+                    <img class="rounded mx-auto d-block" width="150" height="150" src="<?= base_url('assets/img/maps/wa.svg'); ?>">
                 </div>
             </div>
+            <!-- 225 -->
 
             <!--Kaledupa-->
             <div class="col">
                 <div class="card ml-1 mr-1 mb-2 px-2 py-2">
                     <p class="card-text h7 mx-auto">Kaledupa</p>
-                    <img class="rounded mx-auto d-block" width="225" height="225" src="<?= base_url('assets/img/maps/ka.svg'); ?>">
+                    <img class="rounded mx-auto d-block" width="150" height="150" src="<?= base_url('assets/img/maps/ka.svg'); ?>">
                 </div>
             </div>
 
@@ -38,7 +39,7 @@
             <div class="col">
                 <div class="card ml-1 mr-1 mb-2 px-2 py-2">
                     <p class="card-text h7 mx-auto">Tomia</p>
-                    <img class="rounded mx-auto d-block" width="225" height="225" src="<?= base_url('assets/img/maps/to.svg'); ?>">
+                    <img class="rounded mx-auto d-block" width="150" height="150" src="<?= base_url('assets/img/maps/to.svg'); ?>">
                 </div>
             </div>
 
@@ -46,7 +47,7 @@
             <div class="col">
                 <div class="card ml-1 mr-2 mb-2 px-2 py-2">
                     <p class="card-text h7 mx-auto">Binongko</p>
-                    <img class="rounded mx-auto d-block" width="225" height="225" src="<?= base_url('assets/img/maps/bi.svg'); ?>">
+                    <img class="rounded mx-auto d-block" width="150" height="150" src="<?= base_url('assets/img/maps/bi.svg'); ?>">
                 </div>
             </div>
         </div>
