@@ -42,24 +42,24 @@ class Employee_list extends CI_Controller
         $this->form_validation->set_rules('gender', 'Gender', 'required');
         $this->form_validation->set_rules('role_id', 'Role', 'required');
 
-        // if ($this->form_validation->run() == False) {
-        //     $this->session->set_flashdata('error', 'Data pegawai harus diisi dengan lengkap dan benar!');
-        // } else {
-        $data = [
-            'nip' => $this->input->post('nip'),
-            'uname' => htmlspecialchars($this->input->post('name', true)),
-            'email' => htmlspecialchars($this->input->post('email', true)),
-            'password' => password_hash(123456, PASSWORD_DEFAULT),
-            'role_id' => $this->input->post('role_id'),
-            'gender' => $this->input->post('gender'),
-            'position_id' => $this->input->post('position_id'),
-            'district_id' => $this->input->post('district_id'),
-            'phone' => $this->input->post('phone'),
-            'image' => 'default.jpg',
-        ];
-        $this->db->insert('user', $data);
-        $this->session->set_flashdata('message', 'Data berhasil ditambahkan.');
-        // }
+        if ($this->form_validation->run() == False) {
+            $this->session->set_flashdata('error', 'Data pegawai harus diisi dengan lengkap dan benar!');
+        } else {
+            $data = [
+                'nip' => $this->input->post('nip'),
+                'uname' => htmlspecialchars($this->input->post('name', true)),
+                'email' => htmlspecialchars($this->input->post('email', true)),
+                'password' => password_hash(123456, PASSWORD_DEFAULT),
+                'role_id' => $this->input->post('role_id'),
+                'gender' => $this->input->post('gender'),
+                'position_id' => $this->input->post('position_id'),
+                'district_id' => $this->input->post('district_id'),
+                'phone' => $this->input->post('phone'),
+                'image' => 'default.jpg',
+            ];
+            $this->db->insert('user', $data);
+            $this->session->set_flashdata('message', 'Data berhasil ditambahkan.');
+        }
         redirect('manajemen/employee_list');
     }
 
