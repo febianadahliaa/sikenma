@@ -42,7 +42,7 @@
                             <th class="text-center">Kecamatan</th>
                             <th class="text-center">Umur</th>
                             <th class="text-center">Jenis Kelamin</th>
-                            <th class="text-center">Status Pernikahan</th>
+                            <th class="text-center">Status Perkawinan</th>
                             <th class="text-center">Pendidikan</th>
                             <th class="text-center">Pekerjaan</th>
                             <th class="text-center">Action</th>
@@ -132,9 +132,9 @@
                             <input type="text" class="form-control" id="phone" name="phone" placeholder="" required />
                         </div>
                         <div class="form-group col-lg-6">
-                            <label class="mt-2" for="marriage">Status Pernikahan</label>
+                            <label class="mt-2" for="marriage">Status Perkawinan</label>
                             <select name="marriage" id="marriage" class="form-control">
-                                <option value="">--pilih status pernikahan--</option>
+                                <option value="">--pilih status perkawinan--</option>
                                 <option value="Belum Menikah">Belum Menikah</option>
                                 <option value="Sudah Menikah">Sudah Menikah</option>
                             </select>
@@ -142,7 +142,7 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-lg-6">
-                            <label class="mt-2" for="marriage">Pendidikan Terakhir yang Ditamatkan</label>
+                            <label class="mt-2" for="education">Pendidikan Terakhir yang Ditamatkan</label>
                             <select name="education" id="education" class="form-control">
                                 <option value="">--pilih pendidikan terakhir--</option>
                                 <option value="SD/MI">SD/MI</option>

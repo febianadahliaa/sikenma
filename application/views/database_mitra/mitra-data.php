@@ -131,7 +131,7 @@
                             <input type="text" class="form-control" id="skor_geo" name="skor_geo" placeholder="Nilai penguasaan wilayah" required />
                         </div>
                         <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" id="skor_it" name="skor_it" placeholder="Nilai pemahaman teknologi" required />
+                            <input type="text" class="form-control" id="skor_it" name="skor_it" placeholder="Nilai penguasaan teknologi" required />
                         </div>
                     </div>
                     <div class="form-row">
