@@ -27,6 +27,22 @@
         </div>
     </div>
 
+    <!-- <div class="row">
+        <div class="col-lg">
+            <?php if ($this->session->flashdata('error') != '') : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= $this->session->flashdata('error'); ?>
+                </div>
+            <?php endif; ?>
+            <?php if ($this->session->flashdata('message') != '') : ?>
+                <div class="alert alert-success" role="alert">
+                    <?= $this->session->flashdata('message'); ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div> -->
+
+
     <!-- PAGE CONTENT -->
     <div class="row">
         <div class="col-lg-6">
@@ -48,6 +64,7 @@
                                 <td><?= $key['activity']; ?></td>
                                 <td class="action text-center">
                                     <!-- <a href="" class="badge badge-pill badge-primary mr-1 openEditDialog" data-id="<?= $key['activity_id']; ?>" data-toggle="modal" data-target="#editActivityModal">Edit</a> -->
+                                    <a href="" class="badge badge-pill badge-success" data-toggle="modal" data-target="#editActivityModal<?= $key['activity_id']; ?>">Edit</a>
                                     <a href="<?= base_url('manajemen/activity_list/deleteActivity/' . $key['activity_id']); ?>" class="badge badge-pill badge-danger deleteActivity" data-toggle="modal" data-target="#deleteActivityModal<?= $key['activity_id']; ?>">Hapus</a>
                                 </td>
                             </tr>
@@ -97,28 +114,38 @@
 
 
 <!-- EDIT ACTIVITY MODAL -->
-<div class="modal fade" id="editActivityModal" tabindex="-1" role="dialog" aria-labelledby="editActivityModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-primary">
-                <h5 class="modal-title h5 text-light" id="editActivityModalLabel">Edit Kegiatan Statistik</h5>
-                <button class="close text-light" type="button" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
-            </div>
-            <form action="<?= base_url('manajemen/activity_list/editActivity'); ?>" method="post">
-                <div class=" modal-body">
-                    <div class="form-row">
-                        <label class="mt-2" for="menu">Nama Kegiatan</label>
-                        <input class="form-control" type="text" id="menu" name="menu" required />
+<?php foreach ($activityList as $key) : ?>
+    <div class="modal fade" id="editActivityModal<?= $key['activity_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="editActivityModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <h5 class="modal-title h5 text-light" id="editActivityModalLabel">Edit Kegiatan Statistik</h5>
+                    <button class="close text-light" type="button" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <form action="<?= base_url('manajemen/activity_list/editActivity'); ?>" method="post">
+                    <div class=" modal-body">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="mt-2">Kode : </label>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <input type="text" class="form-control" id="activity_id" name="activity_id" placeholder="" value="<?= $key['activity_id']; ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="mt-2" for="activity">Nama Kegiatan</label>
+                            <input type="text" class="form-control" id="activity" name="activity" placeholder="Tuliskan nama lengkap mitra" value="<?= $key['activity']; ?>" required />
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batalkan</button>
-                    <button class="btn btn-primary" type="submit">Ubah</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Batalkan</button>
+                        <button class="btn btn-success" type="submit">Ubah</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+<?php endforeach; ?>
 
 
 <!-- DELETE ACTIVITY MODAL-->
@@ -141,69 +168,3 @@
         </div>
     </div>
 <?php endforeach; ?>
-
-
-
-<!-- Modal Edit -->
-<script type="text/javascript">
-    $(document).ready(function() {
-        var activity_id = $(this).data('id');
-
-        if (activity_id) {
-
-        }
-    })
-</script>
-
-
-
-<!-- Delete Activity Data with Sweet Alert (BELOM JADIII)-->
-<script type="text/javascript">
-    $(".deleteActivity").click(function() {
-        var id = $(this).parents("tr").attr("id");
-
-        Swal.fire({
-            title: 'Apakah Anda yakin?',
-            text: "Data yang dihapus tidak akan bisa dikembalikan!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonClass: "btn-danger",
-            confirmButtonText: "Hapus",
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: "Batalkan",
-            allowOutsideClick: false
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: '<?= base_url('manajemen/activity_list/deleteActivity/') ?>' + id,
-                    type: 'DELETE',
-                    error: function() {
-                        Swal.fire('Something is wrong', '', "error");
-                    },
-                    success: function(data) {
-                        $("#" + id).remove();
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Data kegiatan statistik berhasil dihapus!',
-                            showConfirmButton: false,
-                            allowOutsideClick: false,
-                            timer: 1500
-                        })
-                        setTimeout(function() {
-                            location.reload();
-                        }, 1400);
-                    }
-                });
-            } else {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Data Anda aman ✧◝(⁰▿⁰)◜✧',
-                    showConfirmButton: false,
-                    allowOutsideClick: false,
-                    timer: 1500
-                })
-            }
-        })
-    });
-</script>

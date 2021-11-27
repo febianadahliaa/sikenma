@@ -51,7 +51,29 @@ class Activity_list extends CI_Controller
 
     public function editActivity()
     {
-        '';
+        $config = [
+            [
+                'field' => 'activity',
+                'label' => 'Activity',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Kegiatan tidak boleh kosong!'
+                ],
+            ],
+        ];
+        $this->form_validation->set_rules($config);
+
+        if ($this->form_validation->run() == False) {
+            $this->session->set_flashdata('error', 'Data kegiatan harus diisi dengan lengkap dan benar!');
+        } else {
+            $data = [
+                'activity' => $this->input->post('activity')
+            ];
+            $activity_id = $this->input->post('activity_id');
+            $this->db->update('activity', $data, ['activity_id' => $activity_id]);
+            $this->session->set_flashdata('message', 'Data berhasil diedit.');
+        }
+        redirect('manajemen/activity_list');
     }
 
     public function deleteActivity($id)
