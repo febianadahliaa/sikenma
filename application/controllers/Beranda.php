@@ -13,6 +13,7 @@ class Beranda extends CI_Controller
     {
         $data['title'] = 'Dashboard';
         $data['subMenuName'] = 'Dashboard';
+        $data['menuName'] = 'Beranda';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('partials/header', $data);

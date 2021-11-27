@@ -13,6 +13,7 @@ class Menu extends CI_Controller
     {
         $data['title'] = 'Manajemen Menu';
         $data['subMenuName'] = 'Menu';
+        $data['menuName'] = 'Manajemen';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['menu'] = $this->db->get('user_menu')->result_array();
 

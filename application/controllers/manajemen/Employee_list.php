@@ -13,6 +13,7 @@ class Employee_list extends CI_Controller
     {
         $data['title'] = 'Daftar Pegawai BPS Kabupaten Wakatobi';
         $data['subMenuName'] = 'Pegawai';
+        $data['menuName'] = 'Manajemen';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['district'] = $this->db->get('district')->result_array();
         $data['position'] = $this->db->get('user_position')->result_array();

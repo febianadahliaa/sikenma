@@ -13,6 +13,7 @@ class Mitra_list extends CI_Controller
     {
         $data['title'] = 'Daftar Mitra BPS Kabupaten Wakatobi';
         $data['subMenuName'] = 'Mitra';
+        $data['menuName'] = 'Manajemen';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['village'] = $this->db->get('village')->result_array();
 

@@ -13,6 +13,7 @@ class Track_record extends CI_Controller
     {
         $data['title'] = 'Detail Track Record Mitra';
         $data['subMenuName'] = 'Track Record';
+        $data['menuName'] = 'Penilaian_mitra';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['mitra'] = $this->db->get('mitra')->result_array();
         $data['activity'] = $this->db->get('activity')->result_array();

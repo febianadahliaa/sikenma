@@ -13,6 +13,7 @@ class Activity_list extends CI_Controller
     {
         $data['title'] = 'Kegiatan Statistik';
         $data['subMenuName'] = 'Kegiatan';
+        $data['menuName'] = 'Manajemen';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['activityList'] = $this->db->get('activity')->result_array();
 

@@ -13,6 +13,7 @@ class Summary extends CI_Controller
     {
         $data['title'] = 'Summary Track Record Mitra';
         $data['subMenuName'] = 'Summary';
+        $data['menuName'] = 'Penilaian_mitra';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $query = $this->db->join('mitra', 'mitra_track_record.mitra_id = mitra.mitra_id')

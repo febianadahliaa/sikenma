@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Oct 14, 2021 at 01:36 AM
+-- Host: 127.0.0.1
+-- Generation Time: Nov 27, 2021 at 07:44 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.23
+-- PHP Version: 7.4.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,7 +43,8 @@ INSERT INTO `activity` (`activity_id`, `activity`) VALUES
 (4, 'Survei Angkatan Kerja Nasional'),
 (5, 'Survei Sosial Ekonomi Nasional'),
 (6, 'Survei Harga Pedesaan'),
-(7, 'Survei Ubinan');
+(7, 'Survei Ubinan'),
+(29, 'Survei SITASI');
 
 -- --------------------------------------------------------
 
@@ -99,7 +100,8 @@ INSERT INTO `mitra` (`mitra_id`, `name`, `village_id`, `date_of_birth`, `gender`
 (18, 'Asnida', '7407031017', '1992-01-11', 'Perempuan', '085145661562', 'Sudah Menikah', 'SMA/MA/SMK', 'Lainnya'),
 (19, 'Nurlela', '7407030006', '1996-05-28', 'Perempuan', '082393200242', 'Belum Menikah', 'S1', 'Lainnya'),
 (20, 'Yolanda Juans Patti', '7407030005', '1996-08-19', 'Perempuan', '082291566105', 'Belum Menikah', 'S1', 'Guru'),
-(21, 'Lismawati Diki', '7407050010', '1980-10-22', 'Perempuan', '085255099635', 'Sudah Menikah', 'SMA/MA/SMK', 'Lainnya');
+(21, 'Lismawati Diki', '7407050010', '1980-10-22', 'Perempuan', '085255099635', 'Sudah Menikah', 'SMA/MA/SMK', 'Lainnya'),
+(24, 'TOBIO', '7407010001', '1998-11-05', 'Laki-laki', '081210766111', 'Belum Menikah', 'S1', 'BISA EDIT');
 
 -- --------------------------------------------------------
 
@@ -128,7 +130,8 @@ CREATE TABLE `mitra_track_record` (
 INSERT INTO `mitra_track_record` (`track_record_id`, `mitra_id`, `activity_id`, `year`, `skor_geo`, `skor_it`, `skor_prob`, `skor_qty`, `skor_abc`, `skor_time`, `user_id`) VALUES
 (15, 16, 4, 2021, 87, 85, 80, 75, 85, 86, 340055507),
 (16, 17, 7, 2021, 80, 83, 85, 75, 86, 81, 340017266),
-(17, 16, 5, 2020, 80, 78, 85, 87, 88, 85, 340055507);
+(17, 16, 5, 2020, 80, 78, 85, 87, 88, 85, 340055507),
+(20, 24, 29, 2021, 80, 80, 80, 80, 80, 80, 999888777);
 
 -- --------------------------------------------------------
 
@@ -159,8 +162,8 @@ INSERT INTO `user` (`nip`, `uname`, `email`, `password`, `role_id`, `gender`, `p
 (340055507, 'Sudarmini', 'sudarmini@bps.go.id', '$2y$10$ixzT880mhJy94R5AP6dvjujTW3JF0p3HbxQjj29JD8TJ4MBf4nWW6', 2, 'Laki-laki', 1, '7407050', '085236097145', 'default.jpg'),
 (340056867, 'Muhammad Nur Kamal', 'nurkamal@bps.go.id', '$2y$10$.okaKhoejeC/.5u3Y5NaF.uNeSEMDTxhieY99Hhcbkc/yd0gkhzVi', 1, 'Laki-laki', 1, '7407050', '082191918081', 'default.jpg'),
 (340057015, 'Chandra Ciputra Suyadi', 'chandra.suyadi@bps.go.id', '$2y$10$TtTgITL9aVIR61G8DoFSu.BNTVyZhMkdl2fZL42Umino5IBDCqbpG', 2, 'Laki-laki', 1, '7407050', '085216091991', 'default.jpg'),
-(340060098, 'Febiana Dahlia Anjani', 'dahlia.anjani@bps.go.id', '$2y$10$mxRUwUAKOQqUfMTAT08wbeMqKF1f4fIulsF/Dnf5GZMa.7GjTeLrO', 1, 'Perempuan', 2, '7407021', '081210766330', 'default.jpg'),
-(999888777, 'YUKI ISHIKAWA', 'yuki@bps.go.id', '$2y$10$9E0e8O7zqN7kQtQss1sNWu0WU2Bzhel1eq7MUb6RMyWdR6bJXc2be', 2, 'Laki-laki', 2, '7407021', '081222888999', 'default.jpg');
+(340060098, 'Febiana Dahlia Anjani', 'dahlia.anjani@bps.go.id', '$2y$10$2Zajx.9MbbBpQGxnzkcNBO46UKjwaP6RZg9OWUV1qq8uI1Lj8N7WO', 1, 'Perempuan', 2, '7407021', '081210766330', 'default.jpg'),
+(999888777, 'YUKI ISHIKAWAS', 'yuki@bps.go.id', '$2y$10$9E0e8O7zqN7kQtQss1sNWu0WU2Bzhel1eq7MUb6RMyWdR6bJXc2be', 2, 'Laki-laki', 2, '7407021', '081222888999', 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -182,7 +185,7 @@ INSERT INTO `user_access_menu` (`access_menu_id`, `role_id`, `menu_id`) VALUES
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 3),
-(4, 2, 2),
+(4, 2, 1),
 (5, 2, 3);
 
 -- --------------------------------------------------------
@@ -194,6 +197,7 @@ INSERT INTO `user_access_menu` (`access_menu_id`, `role_id`, `menu_id`) VALUES
 CREATE TABLE `user_menu` (
   `menu_id` int(11) NOT NULL,
   `menu` varchar(128) NOT NULL,
+  `collapse` varchar(128) NOT NULL,
   `is_active` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -201,10 +205,10 @@ CREATE TABLE `user_menu` (
 -- Dumping data for table `user_menu`
 --
 
-INSERT INTO `user_menu` (`menu_id`, `menu`, `is_active`) VALUES
-(1, 'Manajemen', 1),
-(2, 'Beranda', 1),
-(3, 'Database_Mitra', 1);
+INSERT INTO `user_menu` (`menu_id`, `menu`, `collapse`, `is_active`) VALUES
+(1, 'Beranda', 'beranda', 1),
+(2, 'Manajemen', 'manajemen', 1),
+(3, 'Penilaian_mitra', 'penilaian', 1);
 
 -- --------------------------------------------------------
 
@@ -264,13 +268,13 @@ CREATE TABLE `user_sub_menu` (
 --
 
 INSERT INTO `user_sub_menu` (`sub_menu_id`, `menu_id`, `sub_menu_name`, `url`, `icon`, `is_active`) VALUES
-(1, 1, 'Mitra', 'manajemen/mitra_list', 'fas fa-fw fa-users-cog', 1),
-(2, 1, 'Kegiatan', 'manajemen/activity_list', 'fas fa-fw fa-chart-line', 1),
-(3, 1, 'Pegawai', 'manajemen/employee_list', 'fas fa-fw fa-user-tag', 1),
-(4, 2, 'Dashboard', 'beranda', 'fas fa-fw fa-tachometer-alt', 1),
-(5, 3, 'Track Record', 'database_mitra/mitra_track_record', 'fas fa-fw fa-database', 1),
-(6, 3, 'Data Mitra', 'database_mitra/mitra_data', 'fas fa-fw fa-table', 1),
-(7, 1, 'Menu', 'manajemen/menu', 'fas fa-fw fa-bars', 0);
+(1, 2, 'Mitra', 'manajemen/mitra_list', 'fas fa-fw fa-users-cog', 1),
+(2, 2, 'Kegiatan', 'manajemen/activity_list', 'fas fa-fw fa-chart-line', 1),
+(3, 2, 'Pegawai', 'manajemen/employee_list', 'fas fa-fw fa-user-tag', 1),
+(4, 1, 'Dashboard', 'beranda', 'fas fa-fw fa-tachometer-alt', 1),
+(5, 3, 'Summary', 'penilaian_mitra/summary', 'fas fa-fw fa-table', 1),
+(6, 3, 'Track Record', 'penilaian_mitra/track_record', 'fas fa-fw fa-database', 1),
+(7, 2, 'Menu', 'manajemen/menu', 'fas fa-fw fa-bars', 0);
 
 -- --------------------------------------------------------
 
@@ -479,19 +483,19 @@ ALTER TABLE `village`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `mitra`
 --
 ALTER TABLE `mitra`
-  MODIFY `mitra_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `mitra_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `mitra_track_record`
 --
 ALTER TABLE `mitra_track_record`
-  MODIFY `track_record_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `track_record_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
