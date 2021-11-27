@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Mitra_data extends CI_Controller
+class Track_record extends CI_Controller
 {
     function __construct()
     {
@@ -11,8 +11,8 @@ class Mitra_data extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Data Track Record Mitra';
-        $data['subMenuName'] = 'Data Mitra';
+        $data['title'] = 'Detail Track Record Mitra';
+        $data['subMenuName'] = 'Track Record';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['mitra'] = $this->db->get('mitra')->result_array();
         $data['activity'] = $this->db->get('activity')->result_array();
@@ -28,7 +28,7 @@ class Mitra_data extends CI_Controller
         $this->load->view('partials/header', $data);
         $this->load->view('partials/sidebar', $data);
         $this->load->view('partials/topbar', $data);
-        $this->load->view('database_mitra/mitra-data', $data);
+        $this->load->view('penilaian_mitra/track-record', $data);
         $this->load->view('partials/footer');
     }
 
@@ -63,7 +63,7 @@ class Mitra_data extends CI_Controller
             $this->db->insert('mitra_track_record', $data);
             $this->session->set_flashdata('message', 'Data berhasil ditambahkan.');
         }
-        redirect('database_mitra/mitra_data');
+        redirect('penilaian_mitra/track_record');
     }
 
     public function editRecord()
@@ -98,7 +98,7 @@ class Mitra_data extends CI_Controller
             $this->db->update('mitra_track_record', $data, ['track_record_id' => $record_id]);
             $this->session->set_flashdata('message', 'Data berhasil diedit.');
         }
-        redirect('database_mitra/mitra_data');
+        redirect('penilaian_mitra/track_record');
     }
 
     public function deleteRecord($id)
@@ -107,7 +107,7 @@ class Mitra_data extends CI_Controller
         if ($this->db->delete('mitra_track_record', ['track_record_id' => $id])) {
             $this->session->set_flashdata('message', 'Data berhasil dihapus.');
         }
-        redirect('database_mitra/mitra_data');
+        redirect('penilaian_mitra/track_record');
     }
 
     // Add record at another page
@@ -246,7 +246,7 @@ class Mitra_data extends CI_Controller
             ];
             $this->db->insert('mitra_track_record', $data);
             $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
-            redirect('database_mitra/mitra_data');
+            redirect('penilaian_mitra/track_record');
         }
     }
 }
