@@ -48,10 +48,8 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
-
-<!-- NEW SCRIPT -->
-
-<script src="<?= base_url('assets/'); ?>js/script.js"></script>
+<!-- CUSTOM JS -->
+<script src="<?= base_url('assets/'); ?>js/myscript.js"></script>
 
 <!-- DataTables -->
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -62,6 +60,72 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <!-- --------- -->
+
+
+
+<!-- Modal Edit -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        var activity_id = $(this).data('id');
+
+        if (activity_id) {
+
+        }
+    })
+</script>
+
+
+<!-- Delete Activity Data with Sweet Alert (BELOM JADIII)-->
+<script type="text/javascript">
+    $(".deleteActivity").click(function() {
+        var id = $(this).parents("tr").attr("id");
+
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: "Data yang dihapus tidak akan bisa dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Hapus",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: "Batalkan",
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '<?= base_url('manajemen/activity_list/deleteActivity/') ?>' + id,
+                    type: 'DELETE',
+                    error: function() {
+                        Swal.fire('Something is wrong', '', "error");
+                    },
+                    success: function(data) {
+                        $("#" + id).remove();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Data kegiatan statistik berhasil dihapus!',
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                            timer: 1500
+                        })
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1400);
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Data Anda aman ✧◝(⁰▿⁰)◜✧',
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    timer: 1500
+                })
+            }
+        })
+    });
+</script>
+
 
 </body>
 
