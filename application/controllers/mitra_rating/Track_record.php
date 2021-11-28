@@ -37,7 +37,7 @@ class Track_record extends CI_Controller
     {
         $this->form_validation->set_rules('mitra_id', 'Name', 'required');
         $this->form_validation->set_rules('activity_id', 'Activity', 'required');
-        $this->form_validation->set_rules('year', 'Year', 'required|trim|min_length[4]|max_length[4]|numeric');
+        $this->form_validation->set_rules('yearpicker', 'Year', 'required|trim|min_length[4]|max_length[4]|numeric');
         $this->form_validation->set_rules('skor_geo', 'GEO', 'required|trim|min_length[2]|max_length[2]|numeric');
         $this->form_validation->set_rules('skor_it', 'IT', 'required|trim|min_length[2]|max_length[2]|numeric');
         $this->form_validation->set_rules('skor_probing', 'PROB', 'required|trim|min_length[2]|max_length[2]|numeric');
@@ -52,7 +52,7 @@ class Track_record extends CI_Controller
             $data = [
                 'mitra_id' => $this->input->post('mitra_id'),
                 'activity_id' => $this->input->post('activity_id'),
-                'year' => $this->input->post('year'),
+                'year' => $this->input->post('yearpicker'),
                 'skor_geo' => $this->input->post('skor_geo'),
                 'skor_it' => $this->input->post('skor_it'),
                 'skor_prob' => $this->input->post('skor_probing'),
