@@ -2,16 +2,16 @@
 <div class="container-fluid">
 
     <!-- PAGE HEADING -->
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-lg-6">
-            <h3 class="mb-4 text-gray-800"><strong><?= $title ?></strong></h3>
+            <h4 class="mb-3 text-gray-800"><strong><?= $title ?></strong></h4>
             <hr class="sidebar-divider">
         </div>
-    </div>
+    </div> -->
 
     <!-- NOTIFICATION -->
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-8">
             <?php if ($this->session->flashdata('error') != '') : ?>
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -27,28 +27,16 @@
         </div>
     </div>
 
-    <!-- <div class="row">
-        <div class="col-lg">
-            <?php if ($this->session->flashdata('error') != '') : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= $this->session->flashdata('error'); ?>
-                </div>
-            <?php endif; ?>
-            <?php if ($this->session->flashdata('message') != '') : ?>
-                <div class="alert alert-success" role="alert">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
-            <?php endif; ?>
-        </div>
-    </div> -->
-
 
     <!-- PAGE CONTENT -->
-    <div class="row">
-        <div class="col-lg-6">
+    <div class="card shadow mb-4 border-left-primary col-lg-8">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary"><?= $title; ?></h5>
+        </div>
+        <div class="card-body">
             <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#addActivityModal"><i class="fas fa-folder-plus mr-2"></i> Tambah Data Kegiatan Baru</a>
             <div class=" table-responsive">
-                <table class="table table-hover table-sm dataTables" id="dataActivityList" width="100%" cellspacing="0">
+                <table class="table table-hover table-sm dataTables" id="dataTable" width="100%" cellspacing="0">
                     <thead class="thead-dark">
                         <tr>
                             <th class="text-center">#</th>

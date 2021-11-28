@@ -2,12 +2,12 @@
 <div class="container-fluid">
 
     <!-- PAGE HEADING -->
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-lg-8">
-            <h3 class="mb-4 text-gray-800"><strong><?= $title ?></strong></h3>
+            <h4 class="mb-3 text-gray-800"><strong><?= $title ?></strong></h4>
             <hr class="sidebar-divider">
         </div>
-    </div>
+    </div> -->
 
     <!-- NOTIFICATION -->
     <div class="row">
@@ -28,11 +28,14 @@
     </div>
 
     <!-- PAGE CONTENT -->
-    <div class="row">
-        <div class="col-lg-8">
+    <div class="card shadow mb-4 border-left-primary col-lg-8">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary"><?= $title; ?></h5>
+            <!-- NILAI MITRA SECARA UMUM -->
+        </div>
+        <div class="card-body">
             <div class=" table-responsive">
-                <table class="table table-hover table-sm dataTables" width="100%" cellspacing="0">
-
+                <table class="table table-hover table-sm dataTables" id="dataTable" width="100%" cellspacing="0">
                     <thead class="thead-dark">
                         <tr>
                             <th class="text-center">#</th>
@@ -41,7 +44,6 @@
                             <th class="text-center">Overall Rating</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         <?php $i = 1; ?>
                         <?php foreach ($mitraRecord as $key) : ?>

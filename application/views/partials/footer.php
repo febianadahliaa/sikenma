@@ -48,19 +48,35 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
-<!-- CUSTOM JS -->
-<script src="<?= base_url('assets/'); ?>js/myscript.js"></script>
-
-<!-- DataTables -->
-<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<!-- DataTables (Comment this code)-->
+<!-- <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script> -->
+
+<!-- Page level plugins -->
+<script src="<?= base_url('assets/'); ?>vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
+
+<!-- CUSTOM JS (Comment this code)-->
+<!-- <script src="<?= base_url('assets/'); ?>js/myscript.js"></script> -->
 
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-<!-- --------- -->
 
+<!-- Auto Close Alert -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 4000);
+    });
+</script>
 
 
 <!-- Modal Edit -->

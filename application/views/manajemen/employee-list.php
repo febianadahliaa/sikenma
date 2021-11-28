@@ -2,12 +2,12 @@
 <div class="container-fluid">
 
     <!-- PAGE HEADING -->
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-lg-8">
-            <h3 class="mb-4 text-gray-800"><strong><?= $title ?></strong></h3>
+            <h4 class="mb-3 text-gray-800"><strong><?= $title ?></strong></h4>
             <hr class="sidebar-divider">
         </div>
-    </div>
+    </div> -->
 
     <!-- NOTIFICATION -->
     <div class="row">
@@ -28,21 +28,19 @@
     </div>
 
     <!-- PAGE CONTENT -->
-    <div class="row">
-        <div class="col-lg-8">
+    <div class="card shadow mb-4 border-left-primary col-lg-8">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary"><?= $title; ?></h5>
+        </div>
+        <div class="card-body">
             <a href="" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#addEmployeeModal"><i class="fas fa-user-plus mr-2"></i> Tambahkan Data Pegawai Baru</a>
             <div class=" table-responsive">
-                <table class="table table-hover table-sm dataTables" id="dataEmployee" width="100%" cellspacing="0">
+                <table class="table table-hover table-sm dataTables" id="dataTable" width="100%" cellspacing="0">
                     <thead class="thead-dark">
                         <tr>
                             <th class="text-center">#</th>
                             <th class="text-center">NIP</th>
                             <th class="text-center">Nama</th>
-                            <!-- <th class="text-center">Wilayah</th>
-                            <th class="text-center">Jabatan</th>
-                            <th class="text-center">Email</th>
-                            <th class="text-center">Nomor HP</th>
-                            <th class="text-center">Jenis Kelamin</th> -->
                             <th class="text-center">Role</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -193,13 +191,12 @@
 <?php endforeach; ?>
 
 
-<!-- EDIT EMPLOYEE MODAL -->
 <?php foreach ($employeeList as $editKey) : ?>
     <div class="modal fade" id="editEmployeeModal<?= $editKey['nip']; ?>" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" data-backdrop="static" data-keyboard="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-success">
-                    <h5 class="modal-title h5 text-light" id="editEmployeeModalLabel">Edit Data Pegawai Baru</h5>
+                    <h5 class="modal-title h5 text-light" id="editEmployeeModalLabel">Edit Data Pegawai</h5>
                     <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times"></i></span>
                     </button>
@@ -209,12 +206,11 @@
                         <div class="form-row">
                             <div class="form-group col-lg-6">
                                 <label class="mt-2" for="nip">NIP Pegawai</label>
-                                <input type="text" class="form-control" id="nip" name="nip" placeholder="Tulisan NIP lama (9 digit)" value="<?= $editKey['nip']; ?>" required />
-                                <!-- readonly -->
+                                <input type="text" class="form-control" id="nip" name="nip" placeholder="Tulisan NIP lama (9 digit)" value="<?= $editKey['nip']; ?>" readonly />
                             </div>
                             <div class="form-group col-lg-6">
                                 <label class="mt-2" for="name">Nama Pegawai</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Tuliskan nama lengkap pegawai" value="<?= $editKey['uname']; ?>" required />
+                                <input type="text" class="form-control" id="name" name="name" placeholder="" value="<?= $editKey['uname']; ?>" required />
                             </div>
                         </div>
                         <div class="form-row">
