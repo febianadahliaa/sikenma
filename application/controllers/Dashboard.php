@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Beranda extends CI_Controller
+class Dashboard extends CI_Controller
 {
     function __construct()
     {
@@ -13,7 +13,7 @@ class Beranda extends CI_Controller
     {
         $data['title'] = 'Dashboard';
         $data['subMenuName'] = 'Dashboard';
-        $data['menuName'] = 'Beranda';
+        $data['menuName'] = 'Dashboard';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('partials/header', $data);

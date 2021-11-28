@@ -11,7 +11,7 @@
 
 
     <!-- Back Button -->
-    <a href="<?= base_url('database_mitra/mitra_data'); ?>" role="button" class="btn btn-outline-primary btn-sm mt-2 mb-2"><i class="fas fa-arrow-left mr-2"></i>Kembali ke Halaman Data Mitra</a>
+    <a href="<?= base_url('mitra_rating/track_record'); ?>" role="button" class="btn btn-outline-primary btn-sm mt-2 mb-2"><i class="fas fa-arrow-left mr-2"></i>Kembali ke Halaman Data Mitra</a>
 
 
     <!-- NOTIFICATION -->
@@ -36,7 +36,7 @@
     <!-- PAGE CONTENT -->
     <div class="row">
         <div class="col-lg">
-            <form action="<?= base_url('database_mitra/mitra_data/addRecord'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('mitra_rating/track_record/addRecord'); ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-row">
                         <!-- <div class="form-group col-lg"><strong>Informasi Mitra dan Kegiatan Statistik</strong></div> -->

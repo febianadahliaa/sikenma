@@ -64,7 +64,7 @@
                                 <td class="text-center"><?= $key['uname']; ?></td>
                                 <td class="action text-center">
                                     <a href="" class="badge badge-pill badge-success" data-toggle="modal" data-target="#editRecordModal<?= $key['track_record_id']; ?>">Edit</a>
-                                    <a href="<?= base_url('penilaian_mitra/track_record/deleteRecord/' . $key['track_record_id']); ?>" class="badge badge-pill badge-danger deleteRecord" data-toggle="modal" data-target="#deleteRecordModal<?= $key['track_record_id']; ?>">Hapus</a>
+                                    <a href="<?= base_url('mitra_rating/track_record/deleteRecord/' . $key['track_record_id']); ?>" class="badge badge-pill badge-danger deleteRecord" data-toggle="modal" data-target="#deleteRecordModal<?= $key['track_record_id']; ?>">Hapus</a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -95,7 +95,7 @@
                     <span aria-hidden="true"><i class="fas fa-times"></i></span>
                 </button>
             </div>
-            <form action="<?= base_url('penilaian_mitra/track_record/addRecord'); ?>" method="post">
+            <form action="<?= base_url('mitra_rating/track_record/addRecord'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-row">
                         <div class="form-group col-lg">Informasi Mitra dan Kegiatan Statistik</div>
@@ -180,7 +180,7 @@
                         <span aria-hidden="true"><i class="fas fa-times"></i></span>
                     </button>
                 </div>
-                <form action="<?= base_url('penilaian_mitra/track_record/editRecord'); ?>" method="post">
+                <form action="<?= base_url('mitra_rating/track_record/editRecord'); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-row">
                             <div class="form-group">
@@ -289,7 +289,7 @@
                 <div class="modal-body">Data yang dihapus tidak dapat dikembalikan. Pilih <b>Hapus</b> jika ingin menghapus data track record <b><?= $delKey['name']; ?></b> pada kegiatan <?= $delKey['activity']; ?> <?= $delKey['year']; ?>.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                    <a class="btn btn-danger" href="<?= base_url('penilaian_mitra/track_record/deleteRecord/' . $delKey['track_record_id']); ?>">Hapus</a>
+                    <a class="btn btn-danger" href="<?= base_url('mitra_rating/track_record/deleteRecord/' . $delKey['track_record_id']); ?>">Hapus</a>
                 </div>
             </div>
         </div>

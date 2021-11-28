@@ -13,7 +13,7 @@ class Summary extends CI_Controller
     {
         $data['title'] = 'Summary Track Record Mitra';
         $data['subMenuName'] = 'Summary';
-        $data['menuName'] = 'Penilaian_mitra';
+        $data['menuName'] = 'Mitra_Rating';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $query = $this->db->join('mitra', 'mitra_track_record.mitra_id = mitra.mitra_id')
@@ -36,7 +36,7 @@ class Summary extends CI_Controller
         $this->load->view('partials/header', $data);
         $this->load->view('partials/sidebar', $data);
         $this->load->view('partials/topbar', $data);
-        $this->load->view('penilaian_mitra/summary', $data);
+        $this->load->view('mitra_rating/summary', $data);
         $this->load->view('partials/footer');
     }
 }

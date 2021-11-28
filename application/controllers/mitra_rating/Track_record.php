@@ -13,7 +13,7 @@ class Track_record extends CI_Controller
     {
         $data['title'] = 'Detail Track Record Mitra';
         $data['subMenuName'] = 'Track Record';
-        $data['menuName'] = 'Penilaian_mitra';
+        $data['menuName'] = 'Mitra_Rating';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['mitra'] = $this->db->get('mitra')->result_array();
         $data['activity'] = $this->db->get('activity')->result_array();
@@ -29,7 +29,7 @@ class Track_record extends CI_Controller
         $this->load->view('partials/header', $data);
         $this->load->view('partials/sidebar', $data);
         $this->load->view('partials/topbar', $data);
-        $this->load->view('penilaian_mitra/track-record', $data);
+        $this->load->view('mitra_rating/track-record', $data);
         $this->load->view('partials/footer');
     }
 
@@ -64,7 +64,7 @@ class Track_record extends CI_Controller
             $this->db->insert('mitra_track_record', $data);
             $this->session->set_flashdata('message', 'Data berhasil ditambahkan.');
         }
-        redirect('penilaian_mitra/track_record');
+        redirect('mitra_rating/track_record');
     }
 
     public function editRecord()
@@ -99,7 +99,7 @@ class Track_record extends CI_Controller
             $this->db->update('mitra_track_record', $data, ['track_record_id' => $record_id]);
             $this->session->set_flashdata('message', 'Data berhasil diedit.');
         }
-        redirect('penilaian_mitra/track_record');
+        redirect('mitra_rating/track_record');
     }
 
     public function deleteRecord($id)
@@ -108,7 +108,7 @@ class Track_record extends CI_Controller
         if ($this->db->delete('mitra_track_record', ['track_record_id' => $id])) {
             $this->session->set_flashdata('message', 'Data berhasil dihapus.');
         }
-        redirect('penilaian_mitra/track_record');
+        redirect('mitra_rating/track_record');
     }
 
     // Add record at another page
@@ -230,7 +230,7 @@ class Track_record extends CI_Controller
             $this->load->view('partials/header', $data);
             $this->load->view('partials/sidebar', $data);
             $this->load->view('partials/topbar', $data);
-            $this->load->view('database_mitra/input-mitradata', $data);
+            $this->load->view('mitra_rating/input-mitradata', $data);
             $this->load->view('partials/footer');
         } else {
             $data = [
@@ -247,7 +247,7 @@ class Track_record extends CI_Controller
             ];
             $this->db->insert('mitra_track_record', $data);
             $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
-            redirect('penilaian_mitra/track_record');
+            redirect('mitra_rating/track_record');
         }
     }
 }
