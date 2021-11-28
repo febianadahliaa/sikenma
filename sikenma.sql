@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2021 at 07:44 PM
+-- Generation Time: Nov 28, 2021 at 04:31 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -162,7 +162,7 @@ INSERT INTO `user` (`nip`, `uname`, `email`, `password`, `role_id`, `gender`, `p
 (340055507, 'Sudarmini', 'sudarmini@bps.go.id', '$2y$10$ixzT880mhJy94R5AP6dvjujTW3JF0p3HbxQjj29JD8TJ4MBf4nWW6', 2, 'Laki-laki', 1, '7407050', '085236097145', 'default.jpg'),
 (340056867, 'Muhammad Nur Kamal', 'nurkamal@bps.go.id', '$2y$10$.okaKhoejeC/.5u3Y5NaF.uNeSEMDTxhieY99Hhcbkc/yd0gkhzVi', 1, 'Laki-laki', 1, '7407050', '082191918081', 'default.jpg'),
 (340057015, 'Chandra Ciputra Suyadi', 'chandra.suyadi@bps.go.id', '$2y$10$TtTgITL9aVIR61G8DoFSu.BNTVyZhMkdl2fZL42Umino5IBDCqbpG', 2, 'Laki-laki', 1, '7407050', '085216091991', 'default.jpg'),
-(340060098, 'Febiana Dahlia Anjani', 'dahlia.anjani@bps.go.id', '$2y$10$2Zajx.9MbbBpQGxnzkcNBO46UKjwaP6RZg9OWUV1qq8uI1Lj8N7WO', 1, 'Perempuan', 2, '7407021', '081210766330', 'default.jpg'),
+(340060098, 'Febiana Dahlia Anjani', 'feb@bps.go.id', '$2y$10$2Zajx.9MbbBpQGxnzkcNBO46UKjwaP6RZg9OWUV1qq8uI1Lj8N7WO', 1, 'Perempuan', 2, '7407021', '081210766330', 'default.jpg'),
 (999888777, 'YUKI ISHIKAWAS', 'yuki@bps.go.id', '$2y$10$9E0e8O7zqN7kQtQss1sNWu0WU2Bzhel1eq7MUb6RMyWdR6bJXc2be', 2, 'Laki-laki', 2, '7407021', '081222888999', 'default.jpg');
 
 -- --------------------------------------------------------
@@ -197,6 +197,7 @@ INSERT INTO `user_access_menu` (`access_menu_id`, `role_id`, `menu_id`) VALUES
 CREATE TABLE `user_menu` (
   `menu_id` int(11) NOT NULL,
   `menu` varchar(128) NOT NULL,
+  `icon` varchar(128) NOT NULL,
   `collapse` varchar(128) NOT NULL,
   `is_active` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -205,10 +206,10 @@ CREATE TABLE `user_menu` (
 -- Dumping data for table `user_menu`
 --
 
-INSERT INTO `user_menu` (`menu_id`, `menu`, `collapse`, `is_active`) VALUES
-(1, 'Beranda', 'beranda', 1),
-(2, 'Manajemen', 'manajemen', 1),
-(3, 'Penilaian_mitra', 'penilaian', 1);
+INSERT INTO `user_menu` (`menu_id`, `menu`, `icon`, `collapse`, `is_active`) VALUES
+(1, 'Beranda', 'fas fa-fw fa-desktop', 'beranda', 1),
+(2, 'Manajemen', 'fas fa-fw fa-cog', 'manajemen', 1),
+(3, 'Penilaian_mitra', 'far fa-fw fa-star', 'penilaian', 1);
 
 -- --------------------------------------------------------
 
@@ -270,7 +271,7 @@ CREATE TABLE `user_sub_menu` (
 INSERT INTO `user_sub_menu` (`sub_menu_id`, `menu_id`, `sub_menu_name`, `url`, `icon`, `is_active`) VALUES
 (1, 2, 'Mitra', 'manajemen/mitra_list', 'fas fa-fw fa-users-cog', 1),
 (2, 2, 'Kegiatan', 'manajemen/activity_list', 'fas fa-fw fa-chart-line', 1),
-(3, 2, 'Pegawai', 'manajemen/employee_list', 'fas fa-fw fa-user-tag', 1),
+(3, 2, 'Pegawai', 'manajemen/employee_list', 'fas fa-fw fa-user-cog', 1),
 (4, 1, 'Dashboard', 'beranda', 'fas fa-fw fa-tachometer-alt', 1),
 (5, 3, 'Summary', 'penilaian_mitra/summary', 'fas fa-fw fa-table', 1),
 (6, 3, 'Track Record', 'penilaian_mitra/track_record', 'fas fa-fw fa-database', 1),
@@ -495,7 +496,7 @@ ALTER TABLE `mitra`
 -- AUTO_INCREMENT for table `mitra_track_record`
 --
 ALTER TABLE `mitra_track_record`
-  MODIFY `track_record_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `track_record_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
