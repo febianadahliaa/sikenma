@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2021 at 04:31 AM
+-- Generation Time: Nov 28, 2021 at 02:27 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -101,7 +101,7 @@ INSERT INTO `mitra` (`mitra_id`, `name`, `village_id`, `date_of_birth`, `gender`
 (19, 'Nurlela', '7407030006', '1996-05-28', 'Perempuan', '082393200242', 'Belum Menikah', 'S1', 'Lainnya'),
 (20, 'Yolanda Juans Patti', '7407030005', '1996-08-19', 'Perempuan', '082291566105', 'Belum Menikah', 'S1', 'Guru'),
 (21, 'Lismawati Diki', '7407050010', '1980-10-22', 'Perempuan', '085255099635', 'Sudah Menikah', 'SMA/MA/SMK', 'Lainnya'),
-(24, 'TOBIO', '7407010001', '1998-11-05', 'Laki-laki', '081210766111', 'Belum Menikah', 'S1', 'BISA EDIT');
+(24, 'TOBIO', '7407010001', '1998-11-05', 'Laki-laki', '081210766111', 'Belum Menikah', 'S1', 'BISA EDITt');
 
 -- --------------------------------------------------------
 
@@ -131,7 +131,10 @@ INSERT INTO `mitra_track_record` (`track_record_id`, `mitra_id`, `activity_id`, 
 (15, 16, 4, 2021, 87, 85, 80, 75, 85, 86, 340055507),
 (16, 17, 7, 2021, 80, 83, 85, 75, 86, 81, 340017266),
 (17, 16, 5, 2020, 80, 78, 85, 87, 88, 85, 340055507),
-(20, 24, 29, 2021, 80, 80, 80, 80, 80, 80, 999888777);
+(20, 24, 29, 2030, 80, 80, 80, 80, 90, 90, 999888777),
+(23, 18, 2, 2021, 90, 80, 90, 80, 90, 80, 340060098),
+(24, 24, 29, 2030, 90, 90, 90, 90, 90, 90, 999888777),
+(25, 24, 4, 2022, 75, 75, 75, 75, 75, 75, 999888777);
 
 -- --------------------------------------------------------
 
@@ -163,7 +166,7 @@ INSERT INTO `user` (`nip`, `uname`, `email`, `password`, `role_id`, `gender`, `p
 (340056867, 'Muhammad Nur Kamal', 'nurkamal@bps.go.id', '$2y$10$.okaKhoejeC/.5u3Y5NaF.uNeSEMDTxhieY99Hhcbkc/yd0gkhzVi', 1, 'Laki-laki', 1, '7407050', '082191918081', 'default.jpg'),
 (340057015, 'Chandra Ciputra Suyadi', 'chandra.suyadi@bps.go.id', '$2y$10$TtTgITL9aVIR61G8DoFSu.BNTVyZhMkdl2fZL42Umino5IBDCqbpG', 2, 'Laki-laki', 1, '7407050', '085216091991', 'default.jpg'),
 (340060098, 'Febiana Dahlia Anjani', 'feb@bps.go.id', '$2y$10$2Zajx.9MbbBpQGxnzkcNBO46UKjwaP6RZg9OWUV1qq8uI1Lj8N7WO', 1, 'Perempuan', 2, '7407021', '081210766330', 'default.jpg'),
-(999888777, 'YUKI ISHIKAWAS', 'yuki@bps.go.id', '$2y$10$9E0e8O7zqN7kQtQss1sNWu0WU2Bzhel1eq7MUb6RMyWdR6bJXc2be', 2, 'Laki-laki', 2, '7407021', '081222888999', 'default.jpg');
+(999888777, 'YUKI ISHIKAWA', 'yuki@bps.go.id', '$2y$10$FXHQwODvb5TpWxbi83Eg.OphPLhEeUAJpKZU4yKmYLcpnTWwzjBgy', 2, 'Laki-laki', 2, '7407021', '081222888999', 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -207,9 +210,9 @@ CREATE TABLE `user_menu` (
 --
 
 INSERT INTO `user_menu` (`menu_id`, `menu`, `icon`, `collapse`, `is_active`) VALUES
-(1, 'Beranda', 'fas fa-fw fa-desktop', 'beranda', 1),
+(1, 'Dashboard', 'fas fa-fw fa-desktop', 'dashboard', 1),
 (2, 'Manajemen', 'fas fa-fw fa-cog', 'manajemen', 1),
-(3, 'Penilaian_mitra', 'far fa-fw fa-star', 'penilaian', 1);
+(3, 'Mitra_Rating', 'far fa-fw fa-star', 'rating', 1);
 
 -- --------------------------------------------------------
 
@@ -272,10 +275,11 @@ INSERT INTO `user_sub_menu` (`sub_menu_id`, `menu_id`, `sub_menu_name`, `url`, `
 (1, 2, 'Mitra', 'manajemen/mitra_list', 'fas fa-fw fa-users-cog', 1),
 (2, 2, 'Kegiatan', 'manajemen/activity_list', 'fas fa-fw fa-chart-line', 1),
 (3, 2, 'Pegawai', 'manajemen/employee_list', 'fas fa-fw fa-user-cog', 1),
-(4, 1, 'Dashboard', 'beranda', 'fas fa-fw fa-tachometer-alt', 1),
-(5, 3, 'Summary', 'penilaian_mitra/summary', 'fas fa-fw fa-table', 1),
-(6, 3, 'Track Record', 'penilaian_mitra/track_record', 'fas fa-fw fa-database', 1),
-(7, 2, 'Menu', 'manajemen/menu', 'fas fa-fw fa-bars', 0);
+(4, 1, 'Dashboard', 'dashboard', '', 1),
+(5, 3, 'Summary', 'mitra_rating/summary', 'fas fa-fw fa-table', 1),
+(6, 3, 'Track Record', 'mitra_rating/track_record', 'fas fa-fw fa-database', 1),
+(7, 3, 'Kegiatan Statistik', 'mitra_rating/surveys', 'fas fa-fw fa-poll', 1),
+(100, 2, 'Menu', 'manajemen/menu', 'fas fa-fw fa-bars', 0);
 
 -- --------------------------------------------------------
 
@@ -496,7 +500,7 @@ ALTER TABLE `mitra`
 -- AUTO_INCREMENT for table `mitra_track_record`
 --
 ALTER TABLE `mitra_track_record`
-  MODIFY `track_record_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `track_record_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
@@ -526,7 +530,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `sub_menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `sub_menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- Constraints for dumped tables
