@@ -9,6 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- Icons -->
+    <link rel="shortcut icon" type="image/icon" href="<?= base_url('assets/img/kenma.svg') ?>">
+
     <title><?= $title ?></title>
 
     <!-- Custom fonts for this template-->
