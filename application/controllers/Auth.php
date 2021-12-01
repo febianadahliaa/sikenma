@@ -20,7 +20,7 @@ class Auth extends CI_Controller
             if ($role == 1) {
                 redirect('manajemen/mitra_list');
             } elseif ($role == 2) {
-                redirect('beranda');
+                redirect('dashboard');
             }
         }
     }
@@ -78,7 +78,7 @@ class Auth extends CI_Controller
                     if ($user['role_id'] == 1) { //admin
                         redirect('manajemen/mitra_list');
                     } elseif ($user['role_id'] == 2) { //user
-                        redirect('beranda');
+                        redirect('dashboard');
                     }
                 } else {
                     $this->session->set_flashdata('error', 'Password salah!');
