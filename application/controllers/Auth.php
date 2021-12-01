@@ -196,6 +196,7 @@ class Auth extends CI_Controller
     {
         $data['title'] = 'Ganti Password';
         $data['subMenuName'] = '';
+        $data['menuName'] = '';
 
         // $data['user'] = $this->auth_model->getUser();
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();

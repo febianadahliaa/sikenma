@@ -13,6 +13,7 @@ class Profile extends CI_Controller
     {
         $data['title'] = 'Profil Saya';
         $data['subMenuName'] = '';
+        $data['menuName'] = '';
 
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $query = $this->db->select('user.*, user_position.position, district.district')
