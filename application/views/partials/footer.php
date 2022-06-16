@@ -67,6 +67,14 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
+<!-- DataTables -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('table.dataTables').DataTable();
+    });
+</script>
+
+
 <!-- Auto Close Alert -->
 <script type="text/javascript">
     $(document).ready(function() {
@@ -79,7 +87,7 @@
 </script>
 
 
-<!-- Modal Edit -->
+<!-- Modal Edit (BELOM JADI) -->
 <script type="text/javascript">
     $(document).ready(function() {
         var activity_id = $(this).data('id');
@@ -91,13 +99,13 @@
 </script>
 
 
-<!-- Delete Activity Data with Sweet Alert (BELOM JADIII)-->
+<!-- Delete Activity Data with Sweet Alert -->
 <script type="text/javascript">
     $(".deleteActivity").click(function() {
         var id = $(this).parents("tr").attr("id");
 
         Swal.fire({
-            title: 'Apakah Anda yakin?',
+            title: 'Apakah yakin ingin menghapus data master kegiatan?',
             text: "Data yang dihapus tidak akan bisa dikembalikan!",
             icon: 'warning',
             showCancelButton: true,
@@ -119,7 +127,59 @@
                         $("#" + id).remove();
                         Swal.fire({
                             icon: 'success',
-                            title: 'Data kegiatan statistik berhasil dihapus!',
+                            title: 'Data kegiatan statistik berhasil dihapus.',
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                            timer: 1500
+                        })
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1400);
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Data Anda aman ✧◝(⁰▿⁰)◜✧',
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    timer: 1500
+                })
+            }
+        })
+    });
+</script>
+
+
+<!-- Delete Activities Data with Sweet Alert -->
+<script type="text/javascript">
+    $(".deleteActivities").click(function() {
+        var id = $(this).parents("tr").attr("id");
+
+        Swal.fire({
+            title: 'Apakah yakin ingin menghapus data kegiatan berjalan?',
+            text: "Data yang dihapus tidak akan bisa dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Hapus",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: "Batalkan",
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '<?= base_url('manajemen/activity_list/deleteActivities/') ?>' + id,
+                    type: 'DELETE',
+                    error: function() {
+                        Swal.fire('Something is wrong', '', "error");
+                    },
+                    success: function(data) {
+                        $("#" + id).remove();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Data kegiatan berjalan berhasil dihapus.',
                             showConfirmButton: false,
                             allowOutsideClick: false,
                             timer: 1500

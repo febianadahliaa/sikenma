@@ -59,12 +59,12 @@
                                 <td class="text-center"><?= $i ?></td>
                                 <td><?= $key['name']; ?></td>
                                 <td><?= $key['activity'] . ' ' . $key['year']; ?></td>
-                                <td class="text-center"><?= $key['skor_geo']; ?></td>
-                                <td class="text-center"><?= $key['skor_it']; ?></td>
-                                <td class="text-center"><?= $key['skor_prob']; ?></td>
-                                <td class="text-center"><?= $key['skor_qty']; ?></td>
-                                <td class="text-center"><?= $key['skor_abc']; ?></td>
-                                <td class="text-center"><?= $key['skor_time']; ?></td>
+                                <td class="text-center"><?= $key['geo_score']; ?></td>
+                                <td class="text-center"><?= $key['it_score']; ?></td>
+                                <td class="text-center"><?= $key['prob_score']; ?></td>
+                                <td class="text-center"><?= $key['qty_score']; ?></td>
+                                <td class="text-center"><?= $key['abc_score']; ?></td>
+                                <td class="text-center"><?= $key['time_score']; ?></td>
                                 <td class="text-center"><?= $key['uname']; ?></td>
                                 <td class="action text-center">
                                     <a href="" class="badge badge-pill badge-success" data-toggle="modal" data-target="#editRecordModal<?= $key['track_record_id']; ?>">Edit</a>
@@ -133,26 +133,26 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" id="skor_geo" name="skor_geo" placeholder="Nilai penguasaan wilayah" required />
+                            <input type="text" class="form-control" id="geo_score" name="geo_score" placeholder="Nilai penguasaan wilayah" required />
                         </div>
                         <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" id="skor_it" name="skor_it" placeholder="Nilai penguasaan teknologi" required />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" id="skor_probing" name="skor_probing" placeholder="Nilai kemampuan probing" required />
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" id="skor_quality" name="skor_quality" placeholder="Nilai kualitas isian" required />
+                            <input type="text" class="form-control" id="it_score" name="it_score" placeholder="Nilai penguasaan teknologi" required />
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" id="skor_abc" name="skor_abc" placeholder="Nilai kerapihan tulisan" required />
+                            <input type="text" class="form-control" id="prob_score" name="prob_score" placeholder="Nilai kemampuan probing" required />
                         </div>
                         <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" id="skor_time" name="skor_time" placeholder="Nilai ketepatan waktu" required />
+                            <input type="text" class="form-control" id="qty_score" name="qty_score" placeholder="Nilai kualitas isian" required />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
+                            <input type="text" class="form-control" id="abc_score" name="abc_score" placeholder="Nilai kerapihan tulisan" required />
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <input type="text" class="form-control" id="time_score" name="time_score" placeholder="Nilai ketepatan waktu" required />
                         </div>
                     </div>
                     <div class="form-group">
@@ -234,26 +234,26 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-lg-6">
-                                <input type="text" class="form-control" id="skor_geo" name="skor_geo" placeholder="Nilai penguasaan wilayah" value="<?= $editKey['skor_geo']; ?>" required />
+                                <input type="text" class="form-control" id="geo_score" name="geo_score" placeholder="Nilai penguasaan wilayah" value="<?= $editKey['geo_score']; ?>" required />
                             </div>
                             <div class="form-group col-lg-6">
-                                <input type="text" class="form-control" id="skor_it" name="skor_it" placeholder="Nilai pemahaman teknologi" value="<?= $editKey['skor_it']; ?>" required />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-lg-6">
-                                <input type="text" class="form-control" id="skor_probing" name="skor_probing" placeholder="Nilai kemampuan probing" value="<?= $editKey['skor_prob']; ?>" required />
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <input type="text" class="form-control" id="skor_quality" name="skor_quality" placeholder="Nilai kualitas isian" value="<?= $editKey['skor_qty']; ?>" required />
+                                <input type="text" class="form-control" id="it_score" name="it_score" placeholder="Nilai pemahaman teknologi" value="<?= $editKey['it_score']; ?>" required />
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-lg-6">
-                                <input type="text" class="form-control" id="skor_abc" name="skor_abc" placeholder="Nilai kerapihan tulisan" value="<?= $editKey['skor_abc']; ?>" required />
+                                <input type="text" class="form-control" id="prob_score" name="prob_score" placeholder="Nilai kemampuan probing" value="<?= $editKey['prob_score']; ?>" required />
                             </div>
                             <div class="form-group col-lg-6">
-                                <input type="text" class="form-control" id="skor_time" name="skor_time" placeholder="Nilai ketepatan waktu" value="<?= $editKey['skor_time']; ?>" required />
+                                <input type="text" class="form-control" id="qty_score" name="qty_score" placeholder="Nilai kualitas isian" value="<?= $editKey['qty_score']; ?>" required />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-lg-6">
+                                <input type="text" class="form-control" id="abc_score" name="abc_score" placeholder="Nilai kerapihan tulisan" value="<?= $editKey['abc_score']; ?>" required />
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <input type="text" class="form-control" id="time_score" name="time_score" placeholder="Nilai ketepatan waktu" value="<?= $editKey['time_score']; ?>" required />
                             </div>
                         </div>
                         <div class="form-group">

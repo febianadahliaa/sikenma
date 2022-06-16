@@ -38,12 +38,12 @@ class Track_record extends CI_Controller
         $this->form_validation->set_rules('mitra_id', 'Name', 'required');
         $this->form_validation->set_rules('activity_id', 'Activity', 'required');
         $this->form_validation->set_rules('yearpicker', 'Year', 'required|trim|min_length[4]|max_length[4]|numeric');
-        $this->form_validation->set_rules('skor_geo', 'GEO', 'required|trim|min_length[2]|max_length[2]|numeric');
-        $this->form_validation->set_rules('skor_it', 'IT', 'required|trim|min_length[2]|max_length[2]|numeric');
-        $this->form_validation->set_rules('skor_probing', 'PROB', 'required|trim|min_length[2]|max_length[2]|numeric');
-        $this->form_validation->set_rules('skor_quality', 'QTY', 'required|trim|min_length[2]|max_length[2]|numeric');
-        $this->form_validation->set_rules('skor_abc', 'ABC', 'required|trim|min_length[2]|max_length[2]|numeric');
-        $this->form_validation->set_rules('skor_time', 'Time', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('geo_score', 'GEO', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('it_score', 'IT', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('prob_score', 'PROB', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('qty_score', 'QTY', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('abc_score', 'ABC', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('time_score', 'Time', 'required|trim|min_length[2]|max_length[2]|numeric');
         $this->form_validation->set_rules('user_id', 'Reviewer', 'required');
 
         if ($this->form_validation->run() == False) {
@@ -54,11 +54,11 @@ class Track_record extends CI_Controller
                 'activity_id' => $this->input->post('activity_id'),
                 'year' => $this->input->post('yearpicker'),
                 'skor_geo' => $this->input->post('skor_geo'),
-                'skor_it' => $this->input->post('skor_it'),
-                'skor_prob' => $this->input->post('skor_probing'),
-                'skor_qty' => $this->input->post('skor_quality'),
-                'skor_abc' => $this->input->post('skor_abc'),
-                'skor_time' => $this->input->post('skor_time'),
+                'it_score' => $this->input->post('it_score'),
+                'prob_score' => $this->input->post('prob_score'),
+                'qty_score' => $this->input->post('qty_score'),
+                'abc_score' => $this->input->post('abc_score'),
+                'time_score' => $this->input->post('time_score'),
                 'user_id' => $this->input->post('user_id'),
             ];
             $this->db->insert('mitra_track_record', $data);
@@ -72,12 +72,12 @@ class Track_record extends CI_Controller
         $this->form_validation->set_rules('mitra_id', 'Name', 'required');
         $this->form_validation->set_rules('activity_id', 'Activity', 'required');
         $this->form_validation->set_rules('year', 'Year', 'required|trim|min_length[4]|max_length[4]|numeric');
-        $this->form_validation->set_rules('skor_geo', 'GEO', 'required|trim|min_length[2]|max_length[2]|numeric');
-        $this->form_validation->set_rules('skor_it', 'IT', 'required|trim|min_length[2]|max_length[2]|numeric');
-        $this->form_validation->set_rules('skor_probing', 'PROB', 'required|trim|min_length[2]|max_length[2]|numeric');
-        $this->form_validation->set_rules('skor_quality', 'QTY', 'required|trim|min_length[2]|max_length[2]|numeric');
-        $this->form_validation->set_rules('skor_abc', 'ABC', 'required|trim|min_length[2]|max_length[2]|numeric');
-        $this->form_validation->set_rules('skor_time', 'Time', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('geo_score', 'GEO', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('it_score', 'IT', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('prob_score', 'PROB', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('qty_score', 'QTY', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('abc_score', 'ABC', 'required|trim|min_length[2]|max_length[2]|numeric');
+        $this->form_validation->set_rules('time_score', 'Time', 'required|trim|min_length[2]|max_length[2]|numeric');
         $this->form_validation->set_rules('user_id', 'Reviewer', 'required');
 
         if ($this->form_validation->run() == False) {
@@ -87,12 +87,12 @@ class Track_record extends CI_Controller
                 'mitra_id' => $this->input->post('mitra_id'),
                 'activity_id' => $this->input->post('activity_id'),
                 'year' => $this->input->post('year'),
-                'skor_geo' => $this->input->post('skor_geo'),
-                'skor_it' => $this->input->post('skor_it'),
-                'skor_prob' => $this->input->post('skor_probing'),
-                'skor_qty' => $this->input->post('skor_quality'),
-                'skor_abc' => $this->input->post('skor_abc'),
-                'skor_time' => $this->input->post('skor_time'),
+                'geo_score' => $this->input->post('geo_score'),
+                'it_score' => $this->input->post('it_score'),
+                'prob_score' => $this->input->post('prob_score'),
+                'qty_score' => $this->input->post('qty_score'),
+                'abc_score' => $this->input->post('abc_score'),
+                'time_score' => $this->input->post('time_score'),
                 'user_id' => $this->input->post('user_id'),
             ];
             $record_id = $this->input->post('track_record_id');
@@ -150,7 +150,7 @@ class Track_record extends CI_Controller
                 ]
             ],
             [
-                'field' => 'skor_geo',
+                'field' => 'geo_score',
                 'label' => 'GEO',
                 'rules' => 'required|trim|min_length[1]|max_length[3]|numeric',
                 'errors' => [
@@ -161,7 +161,7 @@ class Track_record extends CI_Controller
                 ]
             ],
             [
-                'field' => 'skor_it',
+                'field' => 'it_score',
                 'label' => 'IT',
                 'rules' => 'required|trim|min_length[1]|max_length[3]|numeric',
                 'errors' => [
@@ -172,7 +172,7 @@ class Track_record extends CI_Controller
                 ]
             ],
             [
-                'field' => 'skor_probing',
+                'field' => 'prob_score',
                 'label' => 'PROB',
                 'rules' => 'required|trim|min_length[1]|max_length[3]|numeric',
                 'errors' => [
@@ -183,7 +183,7 @@ class Track_record extends CI_Controller
                 ]
             ],
             [
-                'field' => 'skor_quality',
+                'field' => 'qty_score',
                 'label' => 'QTY',
                 'rules' => 'required|trim|min_length[1]|max_length[3]|numeric',
                 'errors' => [
@@ -194,7 +194,7 @@ class Track_record extends CI_Controller
                 ]
             ],
             [
-                'field' => 'skor_abc',
+                'field' => 'abc_score',
                 'label' => 'ABC',
                 'rules' => 'required|trim|min_length[1]|max_length[3]|numeric',
                 'errors' => [
@@ -205,7 +205,7 @@ class Track_record extends CI_Controller
                 ]
             ],
             [
-                'field' => 'skor_time',
+                'field' => 'time_score',
                 'label' => 'Time',
                 'rules' => 'required|trim|min_length[1]|max_length[3]|numeric',
                 'errors' => [
@@ -237,12 +237,12 @@ class Track_record extends CI_Controller
                 'mitra_id' => $this->input->post('mitra_id'),
                 'activity_id' => $this->input->post('activity_id'),
                 'year' => $this->input->post('year'),
-                'skor_geo' => $this->input->post('skor_geo'),
-                'skor_it' => $this->input->post('skor_it'),
-                'skor_prob' => $this->input->post('skor_probing'),
-                'skor_qty' => $this->input->post('skor_quality'),
-                'skor_abc' => $this->input->post('skor_abc'),
-                'skor_time' => $this->input->post('skor_time'),
+                'geo_score' => $this->input->post('geo_score'),
+                'it_score' => $this->input->post('it_score'),
+                'prob_score' => $this->input->post('prob_score'),
+                'qty_score' => $this->input->post('qty_score'),
+                'abc_score' => $this->input->post('abc_score'),
+                'time_score' => $this->input->post('time_score'),
                 'user_id' => $this->input->post('user_id'),
             ];
             $this->db->insert('mitra_track_record', $data);
