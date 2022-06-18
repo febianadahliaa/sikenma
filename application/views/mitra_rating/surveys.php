@@ -2,12 +2,12 @@
 <div class="container-fluid px-4">
 
     <!-- PAGE HEADING -->
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-lg">
             <h3 class="mb-4 text-gray-800"><?= $title ?></h3>
             <hr class="sidebar-divider">
         </div>
-    </div>
+    </div> -->
 
     <!-- NOTIFICATION -->
     <div class="row">
@@ -29,7 +29,6 @@
 
     <!-- PAGE CONTENT -->
     <div class="row">
-
         <!-- Earnings (Monthly) Card Example -->
         <!-- <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
@@ -117,10 +116,10 @@
 
         <!-- COLUMN-1 -->
         <div class="col-xl-6 col-lg-6">
-            <div class="card shadow mb-4 border-left-info">
+            <div class="card shadow mb-4 border-bottom-warning">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-info">KEGIATAN SAAT INI</h6>
+                    <h5 class="m-0 font-weight-bold text-warning text-uppercase">Kegiatan Saat Ini</h5>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -134,21 +133,27 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div class="chart-area">
+                    <?php foreach ($currentActivityList as $key) : ?>
+                        <div class="h6 mb-0 font-weight-bold text-gray-750"><?= $key['activity']; ?></div>
+                        <div class="text-xs font-weight-bold text-warning mb-3"><?= date_format(date_create($key['start_date']), "j M o") . ' sampai ' . date_format(date_create($key['finish_date']), "j M o"); ?></div>
+                    <?php endforeach ?>
+
+                    <!-- <div class="chart-area">
                         <canvas id="myAreaChart"></canvas>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
 
         <!-- COLUMN-2 -->
         <div class="col-xl-6 col-lg-6">
-            <div class="card shadow mb-4 border-left-primary">
+            <div class="card shadow mb-4 border-bottom-primary">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">REKOMENDASI MITRA</h6>
+                    <h5 class="m-0 font-weight-bold text-primary text-uppercase">Rekomendasi Mitra</h5>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>

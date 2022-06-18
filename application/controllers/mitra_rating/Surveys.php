@@ -16,6 +16,12 @@ class Surveys extends CI_Controller
         $data['menuName'] = 'Mitra_Rating';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+        $data['currentActivityList'] = $this->db->select('*')
+            ->join('activity', 'activity.activity_id = activities.activity_id')->select('activity.activity')
+            ->or_where('MONTH(start_date)', date('m'), 'MONTH(finish_date)', date('m'))
+            ->or_where('YEAR(start_date)', date('Y'), 'YEAR(finish_date)', date('Y'))
+            ->get('activities')->result_array();
+
         $this->load->view('partials/header', $data);
         $this->load->view('partials/sidebar', $data);
         $this->load->view('partials/topbar', $data);
