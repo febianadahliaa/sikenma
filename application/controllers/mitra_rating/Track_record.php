@@ -19,10 +19,10 @@ class Track_record extends CI_Controller
         $data['activity'] = $this->db->get('activity')->result_array();
         $data['reviewer'] = $this->db->get('user')->result_array();
 
-        $query = $this->db->join('mitra', 'mitra_track_record.mitra_id = mitra.mitra_id')
-            ->join('village', 'mitra.village_id = village.village_id')
-            ->join('activity', 'mitra_track_record.activity_id = activity.activity_id')
-            ->join('user', 'mitra_track_record.user_id = user.nip')
+        $query = $this->db->select('mitra_track_record.*')
+            ->join('mitra', 'mitra_track_record.mitra_id = mitra.mitra_id')->select('mitra.name')
+            ->join('activity', 'mitra_track_record.activity_id = activity.activity_id')->select('activity.activity')
+            ->join('user', 'mitra_track_record.user_id = user.nip')->select('user.uname')
             ->get('mitra_track_record');
         $data['mitraRecord'] = $query->result_array();
 
@@ -53,7 +53,7 @@ class Track_record extends CI_Controller
                 'mitra_id' => $this->input->post('mitra_id'),
                 'activity_id' => $this->input->post('activity_id'),
                 'year' => $this->input->post('yearpicker'),
-                'skor_geo' => $this->input->post('skor_geo'),
+                'geo_score' => $this->input->post('geo_score'),
                 'it_score' => $this->input->post('it_score'),
                 'prob_score' => $this->input->post('prob_score'),
                 'qty_score' => $this->input->post('qty_score'),
